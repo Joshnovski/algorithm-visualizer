@@ -6,5 +6,10 @@ class Algorithms(models.Model):
     description = models.TextField()
     code = models.TextField()
 
-    def __str__(self):
-        return self.name
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "code": self.code
+        }
