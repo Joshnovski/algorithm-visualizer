@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block body %}
-    <div id="visualizer-container">Hello AGAIN!</div>
+    <div class="hello" style="cursor: pointer;">Hello AGAIN!</div>
 {% endblock %}
 
 {% block script %}
+    <script src="{% static 'visualizer/divResize.js' %}"></script>
 {% endblock %}
 ```
