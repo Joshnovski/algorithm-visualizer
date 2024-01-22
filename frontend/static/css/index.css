@@ -7,8 +7,8 @@ html, body {
 }
 
 span.Resizer.vertical {
-    cursor: col-resize;
-    width: 1.3px;
+    cursor: ew-resize;
+    width: 1.5px;
     background-color: rgb(102, 102, 102);
     position: relative;
     z-index: 1;
@@ -21,13 +21,13 @@ span.Resizer.vertical::before {
     height: 100%;
     left: 50%;
     transform: translateX(-50%);
-    cursor: col-resize;
+    cursor: ew-resize;
     z-index: -1;
 }
 
 /* Repeat similar styles for horizontal resizers */
 span.Resizer.horizontal {
-    cursor: row-resize;
+    cursor: ns-resize;
     height: 1.3px;
     background-color: rgb(102, 102, 102);
     position: relative;
@@ -41,6 +41,6 @@ span.Resizer.horizontal::before {
     width: 100%;
     top: 50%;
     transform: translateY(-50%);
-    cursor: row-resize;
+    cursor: ns-resize;
     z-index: -1;
 }
