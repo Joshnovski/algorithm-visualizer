@@ -28,7 +28,7 @@ span.Resizer.vertical::before {
 /* Repeat similar styles for horizontal resizers */
 span.Resizer.horizontal {
     cursor: ns-resize;
-    height: 1.3px;
+    height: 1.5px;
     background-color: rgb(102, 102, 102);
     position: relative;
     z-index: 1;
