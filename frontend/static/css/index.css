@@ -8,11 +8,39 @@ html, body {
 
 span.Resizer.vertical {
     cursor: col-resize;
-    width: 3px;
-    background-color: rgb(122, 122, 122);
+    width: 1.3px;
+    background-color: rgb(102, 102, 102);
+    position: relative;
+    z-index: 1;
 }
+
+span.Resizer.vertical::before {
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: col-resize;
+    z-index: -1;
+}
+
+/* Repeat similar styles for horizontal resizers */
 span.Resizer.horizontal {
     cursor: row-resize;
-    height: 3px;
-    background-color: rgb(122, 122, 122);
+    height: 1.3px;
+    background-color: rgb(102, 102, 102);
+    position: relative;
+    z-index: 1;
+}
+
+span.Resizer.horizontal::before {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: row-resize;
+    z-index: -1;
 }
