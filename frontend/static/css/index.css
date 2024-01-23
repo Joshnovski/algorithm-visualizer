@@ -6,6 +6,9 @@ html, body {
     color: rgb(206, 206, 206);
 }
 
+
+/* Resizer Bars */
+
 span.Resizer.vertical {
     cursor: ew-resize;
     width: 1.5px;
@@ -25,7 +28,6 @@ span.Resizer.vertical::before {
     z-index: -1;
 }
 
-/* Repeat similar styles for horizontal resizers */
 span.Resizer.horizontal {
     cursor: ns-resize;
     height: 1.5px;
@@ -43,4 +45,34 @@ span.Resizer.horizontal::before {
     transform: translateY(-50%);
     cursor: ns-resize;
     z-index: -1;
+}
+
+/* Components */
+
+.topbar {
+    background: #333;
+    padding: 10px;
+    border-bottom: 1.5px solid rgb(102, 102, 102);
+}
+
+.code-pane {
+    background: #2d2d2d;
+    height: 100%;
+}
+
+.diagram-pane {
+    background: #242424;
+    height: 100%;
+    width: 100%;
+}
+
+.list-pane {
+    background: #3d3d3d;
+    height: 100%;
+}
+
+.terminal-pane {
+    background: #171717;
+    height: 100%;
+    width: 100%;
 }
