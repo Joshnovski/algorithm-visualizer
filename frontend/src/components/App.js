@@ -24,7 +24,7 @@ export default function App() {
         return (
             <div>
                 <Topbar />
-                <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="20%">
+                <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="20%" style={{ height: 'calc(100vh - 50px)' }}>
                     <ListPane />
                     <div style={{display: 'flex', height: '100%'}}>
                         <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="50%" primary="second">

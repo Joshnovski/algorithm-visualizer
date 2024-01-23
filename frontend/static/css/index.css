@@ -51,6 +51,7 @@ span.Resizer.horizontal::before {
 
 .topbar {
     background: #333;
+    height: 50px;
     padding: 10px;
     border-bottom: 1.5px solid rgb(102, 102, 102);
 }
