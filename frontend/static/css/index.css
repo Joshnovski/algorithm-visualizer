@@ -2,8 +2,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(84, 84, 84);
-    color: rgb(206, 206, 206);
+    background-color: rgb(85, 85, 85);
+    color: #bbb;
 }
 
 
@@ -11,8 +11,8 @@ html, body {
 
 span.Resizer.vertical {
     cursor: ew-resize;
-    width: 1.5px;
-    background-color: rgb(102, 102, 102);
+    width: 1px;
+    background-color: rgb(85, 85, 85);
     position: relative;
     z-index: 1;
 }
@@ -30,8 +30,8 @@ span.Resizer.vertical::before {
 
 span.Resizer.horizontal {
     cursor: ns-resize;
-    height: 1.5px;
-    background-color: rgb(102, 102, 102);
+    height: 1px;
+    background-color: rgb(85, 85, 85);
     position: relative;
     z-index: 1;
 }
@@ -50,10 +50,16 @@ span.Resizer.horizontal::before {
 /* Components */
 
 .topbar {
-    background: #333;
-    height: 50px;
+    background: #393939;
+    height: 35px;
     padding: 10px;
-    border-bottom: 1.5px solid rgb(102, 102, 102);
+    border-bottom: 1px solid rgb(85, 85, 85);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px 0 30px;
 }
 
 .code-pane {
@@ -74,29 +80,85 @@ span.Resizer.horizontal::before {
 }
 
 .terminal-pane {
-    background: #171717;
+    background: #242424;
     height: 100%;
     width: 100%;
 }
 
 /* Ace Editor Styles */
 
-/* Styling for Chrome, Safari, and Edge */
 .ace_scrollbar {
-    scrollbar-color: darkcyan darkslategray; /* For Firefox */
-    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: rgb(100, 100, 100) rgb(63, 63, 63);
+    scrollbar-width: thin;
 }
 
-/* For Webkit (Chrome, Safari, Edge) */
 .ace_scrollbar::-webkit-scrollbar {
-    width: 12px; /* Width of the vertical scrollbar */
-    height: 12px; /* Height of the horizontal scrollbar */
+    width: 12px;
+    height: 12px;
 }
 
 .ace_scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgb(100, 100, 100); /* Color of the scrollbar itself */
+    background-color: rgb(100, 100, 100);
 }
 
 .ace_scrollbar::-webkit-scrollbar-track {
-    background-color: rgb(63, 63, 63); /* Color of the scrollbar track */
+    background-color: rgb(63, 63, 63);
+}
+
+/* Inner Topbar */
+.icon {
+    padding-right: 7px;
+}
+
+.topbar-left-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    font-weight: 600;
+    font-size: 15px;
+}
+.topbar-left-container:hover {
+    cursor: pointer;
+}
+.topbar-right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    font-size: 13px;
+}
+
+.right-btn {
+    display: flex;
+    align-items: center;
+    padding: 0 15px 0 15px;
+    height: 100%;
+}
+.right-btn:hover {
+    background: #2e2e2e;
+    cursor: pointer;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 100%;
+    background: #17ec7a;
+}
+.step-btn {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 15px 0 15px;
+}
+.step-btn:hover {
+    background: #2e2e2e;
+    cursor: pointer;
+}
+
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
