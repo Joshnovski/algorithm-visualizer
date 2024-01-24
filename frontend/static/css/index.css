@@ -59,6 +59,7 @@ span.Resizer.horizontal::before {
 .code-pane {
     background: #2d2d2d;
     height: 100%;
+    width: 100%;
 }
 
 .diagram-pane {
@@ -76,4 +77,26 @@ span.Resizer.horizontal::before {
     background: #171717;
     height: 100%;
     width: 100%;
+}
+
+/* Ace Editor Styles */
+
+/* Styling for Chrome, Safari, and Edge */
+.ace_scrollbar {
+    scrollbar-color: darkcyan darkslategray; /* For Firefox */
+    scrollbar-width: thin; /* For Firefox */
+}
+
+/* For Webkit (Chrome, Safari, Edge) */
+.ace_scrollbar::-webkit-scrollbar {
+    width: 12px; /* Width of the vertical scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar */
+}
+
+.ace_scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgb(100, 100, 100); /* Color of the scrollbar itself */
+}
+
+.ace_scrollbar::-webkit-scrollbar-track {
+    background-color: rgb(63, 63, 63); /* Color of the scrollbar track */
 }
