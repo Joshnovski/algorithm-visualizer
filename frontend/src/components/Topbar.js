@@ -1,5 +1,6 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
+import SpeedSlider from './SpeedSlider';
 
 const Topbar = () => {
 
@@ -17,7 +18,7 @@ const Topbar = () => {
                 <div class="progress-bar-container">
                     <ProgressBar maxValue={maxValue} />
                 </div>
-                <div class="speed-slider right-btn">Speed</div>
+                <SpeedSlider />
             </div>
         </nav>
     );
