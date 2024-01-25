@@ -181,3 +181,38 @@ span.Resizer.horizontal::before {
     background: #2e2e2e;
     cursor: pointer;
 }
+
+.speed-slider-container {
+    width: 180px;
+    gap: 20px;
+}
+
+.speed-slider {
+    width: 80px;
+}
+
+.speed-slider-track {
+    background-color: #505050;
+}
+
+.speed-slider .speed-slider-track {
+    height: 7px;
+    transform: translateY(-50%);
+}
+
+.speed-slider-thumb {
+    background-color: #BBBBBB;
+}
+
+.speed-slider .speed-slider-thumb {
+    width: 7px;
+    height: 15px;
+    transform: translateY(-50%);
+}
+.speed-slider .speed-slider-thumb:focus-visible {
+    outline: none;
+}
+
+/* .speed-slider-thumb:active {
+    cursor: grabbing;
+} */
