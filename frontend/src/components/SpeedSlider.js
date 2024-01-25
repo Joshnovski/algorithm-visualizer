@@ -3,7 +3,10 @@ import ReactSlider from 'react-slider';
 
 const SpeedSlider = () => {
     return (
-        <div class="speed-slider right-btn">Speed</div>
+        <div class=" right-btn">
+            <div class="speed-slider">Speed</div>
+            <ReactSlider />
+        </div>
     );
 };
 

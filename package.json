@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@babel/runtime": "^7.23.9",
     "ace-builds": "^1.32.3",
     "react-ace": "^10.1.0",
     "react-slider": "^2.0.6",
