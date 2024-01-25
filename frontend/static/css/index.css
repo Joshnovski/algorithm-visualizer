@@ -141,24 +141,43 @@ span.Resizer.horizontal::before {
     cursor: pointer;
 }
 
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
 .progress-bar {
     width: 200px;
     height: 100%;
-    background: #17ec7a;
+    position: relative;
+    background-color: #595959;
 }
+
+.progress-bar-active {
+    height: 100%;
+    background-color: #17ec7a;
+}
+
+.progress-bar-value {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: black; /* choose a color that is visible on your progress bar */
+}
+.progress-bar-current-value {
+    font-weight: bold;
+}
+
 .step-btn {
     display: flex;
     align-items: center;
     height: 100%;
     padding: 0 15px 0 15px;
+    font-weight: 700;
 }
 .step-btn:hover {
     background: #2e2e2e;
     cursor: pointer;
-}
-
-.progress-bar-container {
-    display: flex;
-    align-items: center;
-    height: 100%;
 }
