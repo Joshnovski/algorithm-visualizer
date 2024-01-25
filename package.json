@@ -2,6 +2,7 @@
   "dependencies": {
     "ace-builds": "^1.32.3",
     "react-ace": "^10.1.0",
+    "react-slider": "^2.0.6",
     "react-split-pane": "^0.1.92"
   }
 }
