@@ -77,6 +77,7 @@ span.Resizer.horizontal::before {
 .list-pane {
     background: #3d3d3d;
     height: 100%;
+    width: 100%;
 }
 
 .terminal-pane {
@@ -213,6 +214,5 @@ span.Resizer.horizontal::before {
     outline: none;
 }
 
-/* .speed-slider-thumb:active {
-    cursor: grabbing;
-} */
+/* List panel elements */
+
