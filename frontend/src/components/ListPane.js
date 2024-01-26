@@ -1,10 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
+
+const DropdownItem = ({ title, children }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const containerStyle = isOpen ? { backgroundColor: 'rgb(44, 44, 44)' } : {};
+
+    return (
+        <div className="dropdown-container">
+            <div className="dropdown-title-container" style={containerStyle}>
+                <div className="dropdown-title" onClick={() => setIsOpen(!isOpen)}>
+                    {title}
+                </div>
+            </div>
+            {isOpen && (
+                <div className="dropdown-content">
+                    <div className="dropdown-inner-content">
+                        {children}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
 const ListPane = () => {
 
     return (
-        <div class="list-pane">
-            
+        <div className="list-pane">
+            <DropdownItem title="Fundamentals">
+                <DropdownItem title="Introduction" />
+                <DropdownItem title="Basic Concepts" />
+            </DropdownItem>
+            <DropdownItem title="Linear Data Structures">
+                {/* ... continue nesting DropdownItems here ... */}
+            </DropdownItem>
+            {/* ... more top-level DropdownItems ... */}
         </div>
     );
 };
