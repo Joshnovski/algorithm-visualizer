@@ -223,6 +223,9 @@ span.Resizer.horizontal::before {
 }
 .dropdown-title-container {
     padding-left: 10px;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
 }
 /* .dropdown-title-container:hover {
     background-color: rgb(68, 68, 68);

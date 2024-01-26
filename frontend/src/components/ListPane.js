@@ -5,14 +5,19 @@ const DropdownItem = ({ title, children }) => {
 
     const containerStyle = isOpen ? { backgroundColor: 'rgb(44, 44, 44)' } : {};
 
+    const hasChildren = Boolean(children);
+
     return (
         <div className="dropdown-container">
-            <div className="dropdown-title-container" style={containerStyle}>
-                <div className="dropdown-title" onClick={() => setIsOpen(!isOpen)}>
+            <div className="dropdown-title-container" style={containerStyle} onClick={() => hasChildren && setIsOpen(!isOpen)}>
+                <div className="dropdown-title">
                     {title}
                 </div>
+                {hasChildren && (
+                    <i className={`fa-solid ${isOpen ? 'fa-caret-down' : 'fa-caret-right'} fa-xs`}></i>
+                )}
             </div>
-            {isOpen && (
+            {isOpen && hasChildren && (
                 <div className="dropdown-content">
                     <div className="dropdown-inner-content">
                         {children}
