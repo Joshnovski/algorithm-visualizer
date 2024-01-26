@@ -37,9 +37,104 @@ const ListPane = () => {
                 <DropdownItem title="Basic Concepts" />
             </DropdownItem>
             <DropdownItem title="Linear Data Structures">
-                {/* ... continue nesting DropdownItems here ... */}
+                <DropdownItem title="Arrays">
+                    <DropdownItem title="Operations">
+                        <DropdownItem title="Inserting" />
+                        <DropdownItem title="Deleting" />
+                        <DropdownItem title="Accessing" />
+                    </DropdownItem>
+                    <DropdownItem title="Searching">
+                        <DropdownItem title="Linear Search" />
+                        <DropdownItem title="Binary Search" />
+                    </DropdownItem>
+                    <DropdownItem title="Sorting">
+                        <DropdownItem title="Bubble Sort" />
+                        <DropdownItem title="Insertion Sort" />
+                        <DropdownItem title="Selection Sort" />
+                        <DropdownItem title="Merge Sort" />
+                        <DropdownItem title="Quick Sort" />
+                        <DropdownItem title="Bucket Sort" />
+                    </DropdownItem>
+                </DropdownItem>
+                <DropdownItem title="Linked Lists">
+                    <DropdownItem title="Singly Linked List">
+                        <DropdownItem title="Inserting" />
+                        <DropdownItem title="Deleting" />
+                    </DropdownItem>
+                    <DropdownItem title="Doubly Linked List">
+                        <DropdownItem title="Inserting" />
+                        <DropdownItem title="Deleting" />
+                    </DropdownItem>
+                </DropdownItem>
+                <DropdownItem title="Stacks">
+                    <DropdownItem title="Push" />
+                    <DropdownItem title="Pop" />
+                </DropdownItem>
+                <DropdownItem title="Queues">
+                    <DropdownItem title="Enqueue" />
+                    <DropdownItem title="Dequeue" />
+                </DropdownItem>
             </DropdownItem>
-            {/* ... more top-level DropdownItems ... */}
+            <DropdownItem title="Non-Linear Data Structures">
+                <DropdownItem title="Trees">
+                    <DropdownItem title="Binary Tree">
+                        <DropdownItem title="Inorder" />
+                        <DropdownItem title="Preorder" />
+                        <DropdownItem title="Postorder" />
+                        <DropdownItem title="Breadth First Search" />
+                    </DropdownItem>
+                    <DropdownItem title="Binary Search Tree">
+                        <DropdownItem title="Inorder" />
+                        <DropdownItem title="Preorder" />
+                        <DropdownItem title="Postorder" />
+                        <DropdownItem title="Breadth First Search" />
+                    </DropdownItem>
+                </DropdownItem>
+                <DropdownItem title="Graphs">
+                    <DropdownItem title="Directed Graph">
+                        <DropdownItem title="Traversal">
+                            <DropdownItem title="Breadth First Search" />
+                            <DropdownItem title="Depth First Search" />
+                        </DropdownItem>
+                        <DropdownItem title="Pathfinding">
+                            <DropdownItem title="Dijkstra's Algorithm" />
+                            <DropdownItem title="A* Search" />
+                        </DropdownItem>
+                    </DropdownItem>
+                    <DropdownItem title="Undirected Graph">
+                        <DropdownItem title="Traversal">
+                            <DropdownItem title="Breadth First Search" />
+                            <DropdownItem title="Depth First Search" />
+                        </DropdownItem>
+                        <DropdownItem title="Pathfinding">
+                            <DropdownItem title="A* Search" />
+                            <DropdownItem title="Kruskal's Algorithm" />
+                            <DropdownItem title="Prim's Algorithm" />
+                        </DropdownItem>
+                    </DropdownItem>
+                    <DropdownItem title="Maze Generation">
+                        <DropdownItem title="Recursive Division" />
+                    </DropdownItem>
+                </DropdownItem>
+                <DropdownItem title="Hash Tables">
+                    <DropdownItem title="Operations">
+                        <DropdownItem title="Insert" />
+                        <DropdownItem title="Delete" />
+                        <DropdownItem title="Search" />
+                    </DropdownItem>
+                    <DropdownItem title="Hash Functions">
+                        <DropdownItem title="Multiplication Method" />
+                        <DropdownItem title="Division Method" />
+                        <DropdownItem title="Universal Hashing" />
+                    </DropdownItem>
+                </DropdownItem>
+            </DropdownItem>
+            <DropdownItem title="Other">
+                <DropdownItem title="Recursion">
+                    <DropdownItem title="Factorial" />
+                    <DropdownItem title="Fibonacci" />
+                </DropdownItem>
+            </DropdownItem>
         </div>
     );
 };
