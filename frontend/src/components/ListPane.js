@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 const DropdownItem = ({ title, children, level = 0 }) => {
     const [isOpen, setIsOpen] = useState(false);
     const hasChildren = Boolean(children);
-    const paddingLeftIncrement = 10 + level * 10;
+    const paddingLeftIncrement = 10 + level * 20;
     const containerStyle = {
         paddingLeft: `${paddingLeftIncrement}px`, 
-        ...(isOpen ? { backgroundColor: 'rgb(68, 68, 68)' } : {})
+        ...(isOpen ? { backgroundColor: '#393939' } : {})
     };
 
     return (
