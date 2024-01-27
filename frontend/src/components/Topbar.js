@@ -10,7 +10,7 @@ const Topbar = () => {
     return (
         <nav class="topbar">
             <div class="topbar-left-container">
-                <span>Algorithm Visualiser</span>
+                <span class="app-title">SIMPLIFY</span>
             </div>
             <div class="topbar-right-container">
                 <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>

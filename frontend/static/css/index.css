@@ -118,6 +118,10 @@ span.Resizer.horizontal::before {
 }
 
 /* Inner Topbar */
+.app-title {
+    letter-spacing: 3px;
+}
+
 .icon {
     padding-right: 7px;
 }
@@ -128,7 +132,7 @@ span.Resizer.horizontal::before {
     align-items: center;
     gap: 10px;
     height: 100%;
-    font-weight: 600;
+    font-weight: 620;
     font-size: 15px;
 }
 .topbar-left-container:hover {
