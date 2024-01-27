@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 
-const DropdownItem = ({ title, children }) => {
+const DropdownItem = ({ title, children, level = 0 }) => {
     const [isOpen, setIsOpen] = useState(false);
-
-    const containerStyle = isOpen ? { backgroundColor: 'rgb(44, 44, 44)' } : {};
-
     const hasChildren = Boolean(children);
+    const paddingLeftIncrement = 10 + level * 10;
+    const containerStyle = {
+        paddingLeft: `${paddingLeftIncrement}px`, 
+        ...(isOpen ? { backgroundColor: 'rgb(68, 68, 68)' } : {})
+    };
 
     return (
         <div className="dropdown-container">
@@ -20,7 +22,9 @@ const DropdownItem = ({ title, children }) => {
             {isOpen && hasChildren && (
                 <div className="dropdown-content">
                     <div className="dropdown-inner-content">
-                        {children}
+                        {React.Children.map(children, child =>
+                            React.cloneElement(child, { level: level + 1 })
+                        )}
                     </div>
                 </div>
             )}

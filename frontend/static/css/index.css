@@ -218,7 +218,10 @@ span.Resizer.horizontal::before {
 
 .dropdown-container {
     width: 100%;
-    box-sizing: border-box;
+    cursor: pointer;
+}
+.dropdown-container:hover {
+    background-color: rgb(68, 68, 68);
     cursor: pointer;
 }
 .dropdown-title-container {
@@ -227,10 +230,7 @@ span.Resizer.horizontal::before {
     display: flex;
     align-items: center;
 }
-/* .dropdown-title-container:hover {
-    background-color: rgb(68, 68, 68);
-    cursor: pointer;
-} */
+
 .dropdown-title {
     display: flex;
     align-items: center;
@@ -242,9 +242,4 @@ span.Resizer.horizontal::before {
 .dropdown-content {
     background-color: rgb(44, 44, 44);
     width: 100%;
-    box-sizing: border-box;
-}
-
-.dropdown-inner-content {
- padding-left: 10px;
 }
