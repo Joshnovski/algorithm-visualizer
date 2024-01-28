@@ -252,13 +252,14 @@ span.Resizer.horizontal::before {
 }
 
 .dropdown-title {
-    display: flex;
-    align-items: center;
+    /* display: flex;
+    align-items: center; */
     width: 100%;
     font-size: 14px;
     padding: 5px 0px;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dropdown-content {
