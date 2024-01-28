@@ -145,6 +145,14 @@ span.Resizer.horizontal::before {
     height: 100%;
     font-size: 13px;
 }
+/* REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* Hide the topbar-right-container after window is <300px */
+@media screen and (max-width: 756px) {
+    .topbar-right-container {
+        display: none;
+    }
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!!!! */
 
 .right-btn {
     display: flex;
