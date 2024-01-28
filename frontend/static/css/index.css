@@ -119,25 +119,34 @@ span.Resizer.horizontal::before {
 
 /* Inner Topbar */
 .app-title {
+    display: flex;
+    align-items: center;
     letter-spacing: 3px;
+    font-weight: 620;
+    font-size: 15px;
+    height: 100%;
 }
-
 .icon {
     padding-right: 7px;
 }
-
 .topbar-left-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
     height: 100%;
-    font-weight: 620;
-    font-size: 15px;
 }
 .topbar-left-container:hover {
     cursor: pointer;
 }
+.title-separator {
+    display: flex;
+    align-items: center;
+    font-weight: 620;
+    font-size: 15px;
+    height: 100%;
+}
+
 .topbar-right-container {
     display: flex;
     flex-direction: row;

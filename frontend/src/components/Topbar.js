@@ -10,7 +10,16 @@ const Topbar = () => {
     return (
         <nav class="topbar">
             <div class="topbar-left-container">
-                <span class="app-title">SIMPLIFY</span>
+                <div class="app-title">SIMPLIFY</div>
+                {/* <div class="title-separator">|</div>
+                <div>Linear Data Structures</div>
+                <div class="title-separator">\</div>
+                <div>Arrays</div>
+                <div class="title-separator">\</div>
+                <div>Searching</div>
+                <div class="title-separator">\</div>
+                <div>Linear Search</div> */}
+
             </div>
             <div class="topbar-right-container">
                 <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>
