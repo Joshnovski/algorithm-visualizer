@@ -11,14 +11,16 @@ const Topbar = ({ currentPath }) => {
         <nav class="topbar">
             <div class="topbar-left-container">
                 <div class="app-title">SIMPLIFY</div>
-                <div class="dropdown-path-list">
-                    {currentPath.map((item, index) => (
-                        <React.Fragment key={index}>
-                            {index === 0 && <div className="title-separator">|</div>}
-                            {index > 0 && <div className="title-separator">\</div>}
-                            <div class="drowndown-path-list-item">{item}</div>
-                        </React.Fragment>
-                    ))}
+                <div className={`dropdown-path-list ${currentPath.length > 0 ? 'show-border' : ''}`}>
+                    <div class="dropdown-path-list-inner">
+                        {currentPath.map((item, index) => (
+                            <React.Fragment key={index}>
+                                {/* {index === 0 && <span className="title-separator">|</span>} */}
+                                {index > 0 && <span className="title-separator">\</span>}
+                                <span class="drowndown-path-list-item">{item}</span>
+                            </React.Fragment>
+                        ))}
+                    </div>
                 </div>
             </div>
             <div class="topbar-right-container">
