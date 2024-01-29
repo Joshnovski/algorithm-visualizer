@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const DropdownItem = ({ title, children, onItemSelect, level = 0 }) => {
+const DropdownItem = ({ title, children, onItemSelect, level = 0, path = [] }) => {
     const [isOpen, setIsOpen] = useState(false);
     const hasChildren = Boolean(children);
     const paddingLeftIncrement = 10 + level * 20;
@@ -8,28 +8,34 @@ const DropdownItem = ({ title, children, onItemSelect, level = 0 }) => {
         paddingLeft: `${paddingLeftIncrement}px`, 
         ...(isOpen ? { backgroundColor: '#393939' } : {})
     };
+    const fullPath = [...path, title];
 
     return (
         <div className="dropdown-container">
-            <div className="dropdown-title-container" style={containerStyle} onClick={() => {
-                if (hasChildren) {
+            <div 
+                className="dropdown-title-container" 
+                style={containerStyle} 
+                onClick={() => {
                     setIsOpen(!isOpen);
-                }
-                onItemSelect(title);
-            }}>
+                    if (!hasChildren) {
+                        onItemSelect(fullPath);
+                    }
+                }}>
 
-                <div className="dropdown-title">
-                    {title}
-                </div>
+                <div className="dropdown-title">{title}</div>
                 {hasChildren && (
                     <i className={`fa-solid ${isOpen ? 'fa-caret-down' : 'fa-caret-right'} fa-xs`}></i>
                 )}
+
             </div>
             {isOpen && hasChildren && (
                 <div className="dropdown-content">
                     <div className="dropdown-inner-content">
                         {React.Children.map(children, child =>
-                            React.cloneElement(child, { level: level + 1 })
+                            React.cloneElement(child, { 
+                                level: level + 1,
+                                onItemSelect: onItemSelect,
+                                path: fullPath})
                         )}
                     </div>
                 </div>
@@ -42,11 +48,11 @@ const ListPane = ({ onItemSelect }) => {
 
     return (
         <div className="list-pane">
-            <DropdownItem title="Fundamentals" onItemSelect={onItemSelect}>
+            <DropdownItem title="Fundamentals" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Introduction" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Basic Concepts" onItemSelect={onItemSelect}/>
             </DropdownItem>
-            <DropdownItem title="Linear Data Structures" onItemSelect={onItemSelect}>
+            <DropdownItem title="Linear Data Structures" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Arrays" onItemSelect={onItemSelect}>
                     <DropdownItem title="Operations" onItemSelect={onItemSelect}>
                         <DropdownItem title="Inserting" onItemSelect={onItemSelect}/>
@@ -85,7 +91,7 @@ const ListPane = ({ onItemSelect }) => {
                     <DropdownItem title="Dequeue" onItemSelect={onItemSelect}/>
                 </DropdownItem>
             </DropdownItem>
-            <DropdownItem title="Non-Linear Data Structures" onItemSelect={onItemSelect}>
+            <DropdownItem title="Non-Linear Data Structures" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Trees" onItemSelect={onItemSelect}>
                     <DropdownItem title="Binary Tree" onItemSelect={onItemSelect}>
                         <DropdownItem title="Inorder" onItemSelect={onItemSelect}/>
@@ -139,7 +145,7 @@ const ListPane = ({ onItemSelect }) => {
                     </DropdownItem>
                 </DropdownItem>
             </DropdownItem>
-            <DropdownItem title="Other" onItemSelect={onItemSelect}>
+            <DropdownItem title="Other" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Recursion" onItemSelect={onItemSelect}>
                     <DropdownItem title="Factorial" onItemSelect={onItemSelect}/>
                     <DropdownItem title="Fibonacci" onItemSelect={onItemSelect}/>

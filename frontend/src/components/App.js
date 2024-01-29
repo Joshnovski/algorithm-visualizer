@@ -10,8 +10,8 @@ import TerminalPane from './TerminalPane';
 export default function App() {
 
         const [currentPath, setCurrentPath] = useState([]); // State to hold the current path
-        const handleDropdownClick = (title) => { // Function to update the path
-            setCurrentPath(prevPath => [...prevPath, title]); // Add the new item to the current path
+        const handleDropdownClick = (path) => { // Function to update the path
+            setCurrentPath(path);
         };
 
         // Calculats middle position of window to set maxSize of verticle panes
