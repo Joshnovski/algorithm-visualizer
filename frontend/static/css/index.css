@@ -283,3 +283,19 @@ span.Resizer.horizontal::before {
     background-color: rgb(44, 44, 44);
     width: 100%;
 }
+
+/* Dropdown Path List */
+
+.dropdown-path-list {
+display: flex;
+flex-direction: row;
+width: 500px;
+gap: 5px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.dropdown-path-list-item {
+
+}

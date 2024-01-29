@@ -9,6 +9,11 @@ import TerminalPane from './TerminalPane';
 
 export default function App() {
 
+        const [currentPath, setCurrentPath] = useState([]); // State to hold the current path
+        const handleDropdownClick = (title) => { // Function to update the path
+            setCurrentPath(prevPath => [...prevPath, title]); // Add the new item to the current path
+        };
+
         // Calculats middle position of window to set maxSize of verticle panes
         const [halfWindowWidth, getHalfWindowWidth] = useState(window.innerWidth / 2);
         useEffect(() => {
@@ -23,9 +28,9 @@ export default function App() {
         // Render
         return (
             <div>
-                <Topbar />
+                <Topbar currentPath={currentPath}/>
                 <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="20%" style={{ height: 'calc(100vh - 35px)' }}>
-                    <ListPane />
+                    <ListPane onItemSelect={handleDropdownClick} currentPath={currentPath} />
                     <div style={{display: 'flex', height: '100%'}}>
                         <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="50%" primary="second">
                             <SplitPane split="horizontal" minSize={0} defaultSize="50%">

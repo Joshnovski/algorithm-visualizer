@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import SpeedSlider from './SpeedSlider';
 
-const Topbar = () => {
+const Topbar = ({ currentPath }) => {
 
     // Set max value of progress bar based on number of steps in algorithm
     const maxValue = 10;
@@ -11,15 +11,15 @@ const Topbar = () => {
         <nav class="topbar">
             <div class="topbar-left-container">
                 <div class="app-title">SIMPLIFY</div>
-                {/* <div class="title-separator">|</div>
-                <div>Linear Data Structures</div>
-                <div class="title-separator">\</div>
-                <div>Arrays</div>
-                <div class="title-separator">\</div>
-                <div>Searching</div>
-                <div class="title-separator">\</div>
-                <div>Linear Search</div> */}
-
+                <div class="dropdown-path-list">
+                    {currentPath.map((item, index) => (
+                        <React.Fragment key={index}>
+                            {index === 0 && <div className="title-separator">|</div>}
+                            {index > 0 && <div className="title-separator">\</div>}
+                            <div class="drowndown-path-list-item">{item}</div>
+                        </React.Fragment>
+                    ))}
+                </div>
             </div>
             <div class="topbar-right-container">
                 <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>
