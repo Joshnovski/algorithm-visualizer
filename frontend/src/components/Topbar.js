@@ -23,7 +23,7 @@ const Topbar = ({ currentPath }) => {
                 </div>
             </div>
             <div class="topbar-right-container">
-                <div class="list-panel-icon right-btn"><i class="fa-solid fa-bars"></i></div>
+                <div id="list-panel-icon" class="list-panel-icon right-btn"><i class="fa-solid fa-bars"></i></div>
                 <div class="toolbar">
                     <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>
                     <div class="play-btn right-btn"><i class="fa-solid fa-play icon"></i>Play</div>
@@ -32,7 +32,7 @@ const Topbar = ({ currentPath }) => {
                     </div>
                     <SpeedSlider />
                 </div>
-                <div class="code-panel-icon right-btn"><i class="fa-solid fa-code"></i></div>
+                <div id="code-panel-icon" class="code-panel-icon right-btn"><i class="fa-solid fa-code"></i></div>
             </div>
         </nav>
     );

@@ -158,10 +158,14 @@ span.Resizer.horizontal::before {
     height: 100%;
     width: 100%;
     font-size: 13px;
-    justify-content: space-between;
+    justify-content: center;
     overflow: scroll;
 }
-
+@media screen and (max-width: 690px) {
+    .topbar-right-container {
+        justify-content: space-between;
+    }
+}
 .topbar-right-container::-webkit-scrollbar {
     display: none;
 }
@@ -179,6 +183,16 @@ span.Resizer.horizontal::before {
 }
 .code-panel-icon {
     border-left: 1px solid rgb(85, 85, 85);
+}
+@media screen and (min-width: 690px) {
+    #list-panel-icon {
+        display: none;
+    }
+}
+@media screen and (min-width: 500px) {
+    #code-panel-icon {
+        display: none;
+    }
 }
 
 .right-btn {

@@ -19,7 +19,7 @@ export default function App() {
 
         useEffect(() => {
             const handleResize = () => {
-                setListPaneWidth(window.innerWidth < 630 ? '0%' : '20%');
+                setListPaneWidth(window.innerWidth < 690 ? '0%' : '20%');
                 setCodePaneWidth(window.innerWidth < 500 ? '0%' : '50%');
             };
     
