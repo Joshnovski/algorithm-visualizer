@@ -10,29 +10,32 @@ import TerminalPane from './TerminalPane';
 export default function App() {
 
         const [currentPath, setCurrentPath] = useState([]);
+        const [listPaneWidth, setListPaneWidth] = useState(window.innerWidth < 630 ? '0%' : '20%');
+        const [codePaneWidth, setCodePaneWidth] = useState(window.innerWidth < 500 ? '0%' : '50%');
+
         const handleDropdownClick = (path) => {
             setCurrentPath(path);
         };
 
-        // Calculats middle position of window to set maxSize of verticle panes
-        const [halfWindowWidth, getHalfWindowWidth] = useState(window.innerWidth / 2);
         useEffect(() => {
             const handleResize = () => {
-                getHalfWindowWidth(window.innerWidth / 2);
+                setListPaneWidth(window.innerWidth < 630 ? '0%' : '20%');
+                setCodePaneWidth(window.innerWidth < 500 ? '0%' : '50%');
             };
     
             window.addEventListener('resize', handleResize);
             return () => window.removeEventListener('resize', handleResize);
         }, []);
 
+
         // Render
         return (
             <div>
                 <Topbar currentPath={currentPath}/>
-                <SplitPane split="vertical" minSize={0} defaultSize="20%" class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
+                <SplitPane split="vertical" minSize={0} defaultSize={listPaneWidth} class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
                     <ListPane onItemSelect={handleDropdownClick} currentPath={currentPath} />
                     <div style={{display: 'flex', height: '100%'}}>
-                        <SplitPane split="vertical" minSize={0} defaultSize="50%" primary="second">
+                        <SplitPane split="vertical" minSize={0} defaultSize={codePaneWidth} primary="second">
                             <SplitPane split="horizontal" minSize={0} defaultSize="50%">
                                 <DiagramPane />
                                 <TerminalPane />
