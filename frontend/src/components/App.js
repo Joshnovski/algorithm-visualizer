@@ -29,10 +29,10 @@ export default function App() {
         return (
             <div>
                 <Topbar currentPath={currentPath}/>
-                <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="20%" style={{ height: 'calc(100vh - 35px)' }}>
+                <SplitPane split="vertical" minSize={0} defaultSize="20%" class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
                     <ListPane onItemSelect={handleDropdownClick} currentPath={currentPath} />
                     <div style={{display: 'flex', height: '100%'}}>
-                        <SplitPane split="vertical" minSize={0} maxSize={halfWindowWidth} defaultSize="50%" primary="second">
+                        <SplitPane split="vertical" minSize={0} defaultSize="50%" primary="second">
                             <SplitPane split="horizontal" minSize={0} defaultSize="50%">
                                 <DiagramPane />
                                 <TerminalPane />

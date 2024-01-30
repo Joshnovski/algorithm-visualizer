@@ -15,7 +15,6 @@ const Topbar = ({ currentPath }) => {
                     <div class="dropdown-path-list-inner">
                         {currentPath.map((item, index) => (
                             <React.Fragment key={index}>
-                                {/* {index === 0 && <span className="title-separator">|</span>} */}
                                 {index > 0 && <span className="title-separator">\</span>}
                                 <span class="drowndown-path-list-item">{item}</span>
                             </React.Fragment>
