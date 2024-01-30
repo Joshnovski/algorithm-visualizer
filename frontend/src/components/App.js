@@ -9,8 +9,8 @@ import TerminalPane from './TerminalPane';
 
 export default function App() {
 
-        const [currentPath, setCurrentPath] = useState([]); // State to hold the current path
-        const handleDropdownClick = (path) => { // Function to update the path
+        const [currentPath, setCurrentPath] = useState([]);
+        const handleDropdownClick = (path) => {
             setCurrentPath(path);
         };
 
@@ -18,7 +18,7 @@ export default function App() {
         const [halfWindowWidth, getHalfWindowWidth] = useState(window.innerWidth / 2);
         useEffect(() => {
             const handleResize = () => {
-                getHalfWindowWidth(window.innerWidth / 2); // Update on resize
+                getHalfWindowWidth(window.innerWidth / 2);
             };
     
             window.addEventListener('resize', handleResize);

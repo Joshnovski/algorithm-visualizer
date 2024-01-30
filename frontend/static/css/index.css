@@ -158,25 +158,28 @@ span.Resizer.horizontal::before {
     height: 100%;
     width: 100%;
     font-size: 13px;
-    /* justify-content: flex-end; */
+    justify-content: space-between;
     overflow: scroll;
 }
-@media screen and (min-width: 596px) {
-    .topbar-right-container {
-        justify-content: flex-end;
-    }
-}
+
 .topbar-right-container::-webkit-scrollbar {
     display: none;
 }
-/* REMOVE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-/* Hide the topbar-right-container after window is <300px */
-/* @media screen and (max-width: 756px) {
-    .topbar-right-container {
-        display: none;
-    }
-} */
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1!!!!! */
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    border-right: 1px solid rgb(85, 85, 85);
+    border-left: 1px solid rgb(85, 85, 85);
+}
+
+.list-panel-icon {
+    border-right: 1px solid rgb(85, 85, 85);
+}
+.code-panel-icon {
+    border-left: 1px solid rgb(85, 85, 85);
+}
 
 .right-btn {
     display: flex;
@@ -308,6 +311,7 @@ max-width: 50vw;
 height: 100%;
 position: relative;
 text-overflow: ellipsis;
+border-left: 1px solid rgb(85, 85, 85);;
 }
 .dropdown-path-list.show-border {
     border-left: rgb(85, 85, 85) 1.5px solid;

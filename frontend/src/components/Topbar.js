@@ -23,12 +23,16 @@ const Topbar = ({ currentPath }) => {
                 </div>
             </div>
             <div class="topbar-right-container">
-                <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>
-                <div class="play-btn right-btn"><i class="fa-solid fa-play icon"></i>Play</div>
-                <div class="progress-bar-container">
-                    <ProgressBar maxValue={maxValue} />
+                <div class="list-panel-icon right-btn"><i class="fa-solid fa-bars"></i></div>
+                <div class="toolbar">
+                    <div class="build-btn right-btn"><i class="fa-solid fa-wrench icon"></i>Build</div>
+                    <div class="play-btn right-btn"><i class="fa-solid fa-play icon"></i>Play</div>
+                    <div class="progress-bar-container">
+                        <ProgressBar maxValue={maxValue} />
+                    </div>
+                    <SpeedSlider />
                 </div>
-                <SpeedSlider />
+                <div class="code-panel-icon right-btn"><i class="fa-solid fa-code"></i></div>
             </div>
         </nav>
     );
