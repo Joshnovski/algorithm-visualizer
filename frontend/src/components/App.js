@@ -17,6 +17,27 @@ export default function App() {
             setCurrentPath(path);
         };
 
+        const toggleListPane = () => {
+            // setCodePaneWidth(codePaneWidth === '100%' ? '0%' : '0%');
+            // setCodePaneWidth(codePaneWidth === '50%' ? '50%' : '50%');
+            if (codePaneWidth === '100%') {
+                setCodePaneWidth('0%');
+            }
+            setListPaneWidth(listPaneWidth === '0%' ? '100%' : '0%');
+
+        };
+    
+        const toggleCodePane = () => {
+            // setListPaneWidth(listPaneWidth === '100%' ? '0%' : '0%');
+            // setCodePaneWidth(codePaneWidth === '0%' ? '100%' : '0%');
+            if (listPaneWidth === '100%') {
+                setListPaneWidth('0%');
+                setCodePaneWidth('100%');
+            } else {
+                setCodePaneWidth(codePaneWidth === '0%' ? '100%' : '0%');
+            }
+        };
+
         useEffect(() => {
             const handleResize = () => {
                 setListPaneWidth(window.innerWidth < 690 ? '0%' : '20%');
@@ -31,11 +52,11 @@ export default function App() {
         // Render
         return (
             <div>
-                <Topbar currentPath={currentPath}/>
-                <SplitPane split="vertical" minSize={0} defaultSize={listPaneWidth} class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
+                <Topbar currentPath={currentPath} toggleListPane={toggleListPane} toggleCodePane={toggleCodePane} />
+                <SplitPane split="vertical" minSize={0} size={listPaneWidth} defaultSize={listPaneWidth} class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
                     <ListPane onItemSelect={handleDropdownClick} currentPath={currentPath} />
                     <div style={{display: 'flex', height: '100%'}}>
-                        <SplitPane split="vertical" minSize={0} defaultSize={codePaneWidth} primary="second">
+                        <SplitPane split="vertical" minSize={0} size={codePaneWidth}  defaultSize={codePaneWidth} primary="second">
                             <SplitPane split="horizontal" minSize={0} defaultSize="50%">
                                 <DiagramPane />
                                 <TerminalPane />
