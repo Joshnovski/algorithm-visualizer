@@ -1,0 +1,49 @@
+{
+  "name": "algorithm-visualizer",
+  "version": "2.3.9",
+  "description": "Visualization Library for JavaScript",
+  "keywords": [
+    "algorithm",
+    "data-structure",
+    "visualization",
+    "animation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/algorithm-visualizer/tracers.js.git"
+  },
+  "license": "MIT",
+  "main": "dist/algorithm-visualizer.cjs.js",
+  "module": "dist/algorithm-visualizer.esm.js",
+  "browser": "dist/algorithm-visualizer.umd.js",
+  "types": "dist/types",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "opn": "^5.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.8",
+    "ava": "^2.1.0",
+    "gh-pages": "^2.0.1",
+    "nyc": "^14.1.1",
+    "rollup": "^1.15.1",
+    "rollup-plugin-typescript2": "^0.21.1",
+    "tslib": "^1.10.0",
+    "typedoc": "^0.14.2",
+    "typescript": "^3.5.1"
+  },
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rm -rf dist && rollup -c",
+    "docs": "typedoc",
+    "test": "nyc ava"
+  },
+  "files": [
+    "dist"
+  ],
+  "ava": {
+    "helpers": [
+      "test/helpers/**/*"
+    ]
+  }
+}
