@@ -7,6 +7,10 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 const CodePane = ({selectedAlgorithm}) => {
 
+    // Set initial code state to be something when
+    // no algorithm is selected,. Then exchange this
+    // with the selected algorithm's code on click of 
+    // button from list component.
     const [code, setCode] = useState(``)
 
     // useEffect(() => {
