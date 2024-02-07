@@ -4,7 +4,6 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="static/brand-white.png" alt="Logo" width="120" height="80">
   </a>
 
   <h3 align="center">S I M P L I F Y</h3>
@@ -14,9 +13,6 @@
     <br />
     <br />
     <br />
-    <a href="https://segmentcv-deploy-e9a646f7dbd1.herokuapp.com/dashboard" target="_blank" rel="noopener noreferrer">View Demo</a>
-    .
-    <a href="https://youtu.be/bJDfH49PRbo" target="_blank" rel="noopener noreferrer">View Quick Video Demo</a>
   </p>
 </div>
 
