@@ -42,12 +42,10 @@
 
 ## [Built With]()
 
-* [![OpenCV][OpenCV.org]][OpenCV-url]
-* [![Matplotlib][Matplotlib.org]][Matplotlib-url]
-* [![NumPy][NumPy.org]][NumPy-url]
+* [![React.js][React.js]][React-url]
+* [![Django.org][Django.org]][Django-url]
+* [![Next.js][Next.js]][Next-url]
 * [![SQLite][SQLite.org]][SQLite-url]
-* [![Flask][Flask.py]][Flask-url]
-* [![Figma][Figma.com]][Figma-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -66,12 +64,11 @@
 [Svelte-url]: https://svelte.dev/
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
+
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [Figma.com]: https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white
 [Figma-url]: https://www.figma.com/
-[Flask.py]: https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white
-[Flask-url]: https://flask.palletsprojects.com/en/3.0.x/
 [JavaScript.js]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
 [JavaScript-url]: https://www.w3schools.com/Js/
 [CSS3.css]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
@@ -82,9 +79,10 @@
 [Python-url]: https://www.python.org/
 [SQLite.org]: https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white
 [SQLite-url]: https://www.sqlite.org/index.html
-[OpenCV.org]: https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white
-[OpenCV-url]: https://opencv.org/
-[Matplotlib.org]: https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black
-[Matplotlib-url]: https://matplotlib.org/
-[NumPy.org]: https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white
-[NumPy-url]: https://numpy.org/
+[React.js]: https://img.shields.io/badge/react-black?style=for-the-badge&logo=react&logoColor=white
+[React-url]: https://react.dev/
+[Django.org]: https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green
+[Django-url]: https://www.djangoproject.com/
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+
