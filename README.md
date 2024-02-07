@@ -9,7 +9,7 @@
   <h3 align="center">S I M P L I F Y</h3>
 
   <p align="center">
-    A computer vision web tool for segment characterisation.
+    Simplify the process of learning data structures and algorithms. Learn at your own pace by controlling your exploration of a variety of algorithms, each with visible code and dynamic animations to assist in the learning experience.
     <br />
     <br />
     <br />
