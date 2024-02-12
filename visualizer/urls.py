@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # API Routes
+    # Dummy comment
 ]
