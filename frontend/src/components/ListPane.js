@@ -52,103 +52,57 @@ const ListPane = ({ onItemSelect }) => {
                 <DropdownItem title="Introduction" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Basic Concepts" onItemSelect={onItemSelect}/>
             </DropdownItem>
-            <DropdownItem title="Linear Data Structures" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Arrays" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Operations" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Inserting" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Deleting" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Accessing" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                    <DropdownItem title="Searching" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Linear Search" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Binary Search" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                    <DropdownItem title="Sorting" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Bubble Sort" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Insertion Sort" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Selection Sort" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Merge Sort" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Quick Sort" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Bucket Sort" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                </DropdownItem>
-                <DropdownItem title="Linked Lists" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Singly Linked List" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Inserting" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Deleting" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                    <DropdownItem title="Doubly Linked List" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Inserting" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Deleting" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                </DropdownItem>
-                <DropdownItem title="Stacks" onItemSelect={onItemSelect}>
+
+            <DropdownItem title="Array" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Linked List" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Traverse" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Reverse" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Tree" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
+                <DropdownItem title="In-order Traversal" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Pre-order Traversal" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Post-order Traversal" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Graph" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Depth-First Search" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Breadth-First Search" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Hash Table" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Hash" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Collision Resolution" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Heap" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
+                <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
+            </DropdownItem>
+
+            <DropdownItem title="Stack and Queue" onItemSelect={onItemSelect} path={[]}>
+                <DropdownItem title="Stack Operations" onItemSelect={onItemSelect}>
                     <DropdownItem title="Push" onItemSelect={onItemSelect}/>
                     <DropdownItem title="Pop" onItemSelect={onItemSelect}/>
+                    <DropdownItem title="Top" onItemSelect={onItemSelect}/>
                 </DropdownItem>
-                <DropdownItem title="Queues">
+                <DropdownItem title="Queue Operations" onItemSelect={onItemSelect}>
                     <DropdownItem title="Enqueue" onItemSelect={onItemSelect}/>
                     <DropdownItem title="Dequeue" onItemSelect={onItemSelect}/>
-                </DropdownItem>
-            </DropdownItem>
-            <DropdownItem title="Non-Linear Data Structures" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Trees" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Binary Tree" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Inorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Preorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Postorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Breadth First Search" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                    <DropdownItem title="Binary Search Tree" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Inorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Preorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Postorder" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Breadth First Search" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                </DropdownItem>
-                <DropdownItem title="Graphs" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Directed Graph" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Traversal" onItemSelect={onItemSelect}>
-                            <DropdownItem title="Breadth First Search" onItemSelect={onItemSelect}/>
-                            <DropdownItem title="Depth First Search" onItemSelect={onItemSelect}/>
-                        </DropdownItem>
-                        <DropdownItem title="Pathfinding" onItemSelect={onItemSelect}>
-                            <DropdownItem title="Dijkstra's Algorithm" onItemSelect={onItemSelect}/>
-                            <DropdownItem title="A* Search" onItemSelect={onItemSelect}/>
-                        </DropdownItem>
-                    </DropdownItem>
-                    <DropdownItem title="Undirected Graph" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Traversal" onItemSelect={onItemSelect}>
-                            <DropdownItem title="Breadth First Search" onItemSelect={onItemSelect}/>
-                            <DropdownItem title="Depth First Search" onItemSelect={onItemSelect}/>
-                        </DropdownItem>
-                        <DropdownItem title="Pathfinding" onItemSelect={onItemSelect}>
-                            <DropdownItem title="A* Search" onItemSelect={onItemSelect}/>
-                            <DropdownItem title="Kruskal's Algorithm" onItemSelect={onItemSelect}/>
-                            <DropdownItem title="Prim's Algorithm" onItemSelect={onItemSelect}/>
-                        </DropdownItem>
-                    </DropdownItem>
-                    <DropdownItem title="Maze Generation" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Recursive Division" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                </DropdownItem>
-                <DropdownItem title="Hash Tables" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Operations" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                    <DropdownItem title="Hash Functions" onItemSelect={onItemSelect}>
-                        <DropdownItem title="Multiplication Method" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Division Method" onItemSelect={onItemSelect}/>
-                        <DropdownItem title="Universal Hashing" onItemSelect={onItemSelect}/>
-                    </DropdownItem>
-                </DropdownItem>
-            </DropdownItem>
-            <DropdownItem title="Other" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Recursion" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Factorial" onItemSelect={onItemSelect}/>
-                    <DropdownItem title="Fibonacci" onItemSelect={onItemSelect}/>
+                    <DropdownItem title="Front" onItemSelect={onItemSelect}/>
                 </DropdownItem>
             </DropdownItem>
         </div>
