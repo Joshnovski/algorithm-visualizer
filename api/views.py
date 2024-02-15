@@ -11,7 +11,7 @@ def index(request):
 def get_algorithm_files(request):
     file_path = os.path.join(
         os.path.dirname(__file__),  # Gets the directory of `views.py`
-        '..',  # Moves up to the `visualizer` directory
+        '..',  # Moves up to the `api` directory
         '..',  # Moves up to the root directory of the project
         'Algorithms', 'NonLinearDataStructures', 'Graphs', 'DirectedGraphs', 'Traversal', 'BreadthFirstSearch', 'BreadthFirstSearchDirectedGraphs.js'
     )
