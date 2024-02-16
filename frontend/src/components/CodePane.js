@@ -8,6 +8,8 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 const CodePane = () => {
 
+    const [code, setCode] = useState(``)
+
     // Fetch function to the algorithm model
     useEffect(() => {
         // Assuming '/algorithms/' is the correct endpoint to fetch your algorithms
@@ -15,28 +17,13 @@ const CodePane = () => {
             .then(response => response.json())
             .then(data => {
                 // Handle the fetched data
+                setCode(data[1].code);
                 console.log("Fetched data: ", data);
             })
             .catch(error => {
                 console.error('Error fetching data: ', error);
             });
     }, []); 
-
-    // Set initial code state to be something when
-    // no algorithm is selected,. Then exchange this
-    // with the selected algorithm's code on click of 
-    // button from list component.
-    const [code, setCode] = useState(``)
-
-    // useEffect(() => {
-    //     // Fetch the initial code for the selected algorithm
-    //     // and set it as the initial state.
-    //     // This could be a call to your server or a local file read.
-    //     fetchAlgorithmCode(selectedAlgorithm)
-    //     .then(initialCode => {
-    //         setCode(initialCode);
-    //     });
-    // }, [selectedAlgorithm]);
 
     function updateCode(newValue) {
         setCode(newValue);
@@ -51,7 +38,7 @@ const CodePane = () => {
     return (
         <div class="code-pane">
             <AceEditor 
-            mode="python" 
+            mode="javascript" 
             theme="tomorrow_night_eighties"
             value={code}
             onChange={updateCode}
