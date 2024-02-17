@@ -30,9 +30,16 @@ class Command(BaseCommand):
                             description = file.read()
 
                         # Create or update the Algorithm instance
-                        algorithm = Algorithms(name=algorithm_name, description=description, code=code_content)
-                        algorithm.save()
+                        algorithm, created = Algorithms.objects.update_or_create(
+                            name=algorithm_name, 
+                            defaults={'description':description, 'code':code_content}
+                        )
+                        
+                        if created:
+                            msg = f'Successfully added {algorithm_name} to database.'
+                        else:
+                            msg = f'Successfully updated {algorithm_name} in database.'
 
-                        self.stdout.write(self.style.SUCCESS(f'Successfully imported {algorithm_name} to database.'))
+                        self.stdout.write(self.style.SUCCESS(msg))
                     except FileNotFoundError:
                         self.stdout.write(self.style.ERROR(f'File not found: {file}'))
