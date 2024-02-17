@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { render } from 'react-dom';
 import AceEditor from 'react-ace';
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-tomorrow_night_eighties";
 import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/snippets/javascript";
 
 
 const CodePane = () => {
@@ -25,7 +26,7 @@ const CodePane = () => {
             });
     }, []); 
 
-    function updateCode(newValue) {
+    function onChange(newValue) {
         setCode(newValue);
         // console.log(newValue);
     }
@@ -41,10 +42,11 @@ const CodePane = () => {
             mode="javascript" 
             theme="tomorrow_night_eighties"
             value={code}
-            onChange={updateCode}
+            onChange={onChange}
             setOptions={{
                 enableSnippets: false,
                 showLineNumbers: true,
+                useWorker: false,
                 tabSize: 2,
                 }}
             style={{ width: '100%', height: '100%' }} 
