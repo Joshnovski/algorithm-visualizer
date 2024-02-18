@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 import DiagramPane from './DiagramPane';
 import CodePane from './CodePane';
 import ListPane from './ListPane';
-import TerminalPane from './TerminalPane';
+import LogPane from './LogPane';
 
 export default function App() {
 
@@ -59,7 +59,7 @@ export default function App() {
                         <SplitPane split="vertical" minSize={0} size={codePaneWidth}  defaultSize={codePaneWidth} primary="second">
                             <SplitPane split="horizontal" minSize={0} defaultSize="50%">
                                 <DiagramPane />
-                                <TerminalPane />
+                                <LogPane />
                             </SplitPane>
                             <CodePane />
                         </SplitPane>

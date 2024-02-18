@@ -92,7 +92,7 @@ span.Resizer.horizontal::before {
     background-color: rgb(63, 63, 63);
 }
 
-.terminal-pane {
+.log-pane {
     background: #242424;
     height: 100%;
     width: 100%;

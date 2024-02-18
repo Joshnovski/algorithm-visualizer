@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DiagramPane = () => {
+const DiagramPane = ({ visualizationData }) => {
     return (
         <div class="diagram-pane">
         </div>
