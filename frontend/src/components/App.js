@@ -9,6 +9,8 @@ import LogPane from './LogPane';
 
 export default function App() {
 
+        const [logMessages, setLogMessages] = useState([]);
+        const [visualizationData, setVisualizationData] = useState(null);
         const [currentPath, setCurrentPath] = useState([]);
         const [listPaneWidth, setListPaneWidth] = useState(window.innerWidth < 630 ? '0%' : '20%');
         const [codePaneWidth, setCodePaneWidth] = useState(window.innerWidth < 500 ? '0%' : '50%');
