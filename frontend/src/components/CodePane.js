@@ -24,14 +24,12 @@ const CodePane = () => {
       });
   }, []);
 
+  const runAlgorithm = () => {
+  };
+
   function onChange(newValue) {
     setCode(newValue);
     // console.log(newValue);
-  }
-
-  function runCode() {
-    // Send the current code to backend for execution
-    // Handle the response
   }
 
   return (

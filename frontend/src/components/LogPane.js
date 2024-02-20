@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LogPane = ({ logMessages }) => {
+const LogPane = () => {
     return (
         <div class='log-pane'>
         </div>
