@@ -11,8 +11,7 @@ const DiagramPane = () => {
       // Step 2: Ensure the div is mounted
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
 
-      // CODE FROM THE ALGORITHM MODEL
-      // Depth First Search
+      // ALGORITHM Code
 
       // Generate a random graph
       seedrandom("2", { global: true });
@@ -22,7 +21,7 @@ const DiagramPane = () => {
       // Render graph
       canvas.nodes(G.nodes()).add().label();
       canvas.edges(G.edges()).add();
-      canvas.pause(1);
+      canvas.pause(3.5);
 
       // Recursive DFS function
       function dfs(n) {
@@ -30,7 +29,7 @@ const DiagramPane = () => {
 
         canvas.node(n).highlight().size("1.25x");
         canvas.node(n).color("#ba0d5b");
-        canvas.pause(1.5);
+        canvas.pause(3.5);
 
         for (let n2 of G.neighbors(n)) {
           if (G.node[n2].seen) continue;
@@ -38,7 +37,7 @@ const DiagramPane = () => {
           canvas.edge([n, n2]).traverse("blue").pause(1.5);
           dfs(n2); // DFS on neighbor
           canvas.edge([n2, n]).traverse("#ba0d5b").pause(1.5);
-          canvas.node(n).highlight().size("1.25x").pause(1.5);
+          canvas.node(n).highlight().size("1.25x").pause(3.5);
         }
       }
 
