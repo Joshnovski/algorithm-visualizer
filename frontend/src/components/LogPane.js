@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const LogPane = () => {
+const LogPane = ({ splitPaneDragged }) => {
   const [messages, setMessages] = useState([]);
   const logPaneRef = useRef(null);
 
@@ -43,29 +43,31 @@ const LogPane = () => {
   }, []);
 
   // Adjust the max-height of the log pane on window resize
-  useEffect(() => {
-    const updateMaxHeight = () => {
-      if (logPaneRef.current) {
-        const rect = logPaneRef.current.getBoundingClientRect();
-        const maxHeight = window.innerHeight - rect.top;
-        logPaneRef.current.style.maxHeight = `${maxHeight}px`;
-      }
-    };
+  const updateMaxHeight = () => {
+    if (logPaneRef.current) {
+      const rect = logPaneRef.current.getBoundingClientRect();
+      const maxHeight = window.innerHeight - rect.top;
+      logPaneRef.current.style.maxHeight = `${maxHeight}px`;
+    }
+  };
 
-    // Set the max height initially and add the event listener
+  // Update max height initially and whenever the window is resized or splitPaneDragged changes
+  useEffect(() => {
     updateMaxHeight();
     window.addEventListener("resize", updateMaxHeight);
 
-    // Cleanup the event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", updateMaxHeight);
-    };
-  }, []); // Empty dependency array ensures this effect runs once on mount
+    return () => window.removeEventListener("resize", updateMaxHeight);
+  }, []);
+
+  // This effect listens for changes in splitPaneDragged to adjust the max height
+  useEffect(() => {
+    updateMaxHeight();
+  }, [splitPaneDragged]); // React to splitPaneDragged changes
 
   return (
     <div ref={logPaneRef} className="log-pane">
       {messages.map((message, index) => (
-        <p key={index}>{message}</p>
+        <div className="log-output" key={index}>{message}</div>
       ))}
     </div>
   );
