@@ -3,12 +3,12 @@ import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
 const LogPane = ({ splitPaneDragged }) => {
-  const [messages, setMessages] = useState([]);
-  const logPaneRef = useRef(null);
+  const [messages, setMessages] = useState([]); // Set messages as an empty array initially
+  const logPaneRef = useRef(null); // Initialize a reference to the log pane as null
 
   // Functions to add messages
   const addInstantMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+    setMessages((prevMessages) => [...prevMessages, newMessage]); // Calling this updates messages state
   };
   const addDelayedMessage = (newMessage) => {
     return new Promise((resolve) => {
@@ -64,18 +64,17 @@ const LogPane = ({ splitPaneDragged }) => {
   // Adjust the max-height of the log pane on window resize
   const updateMaxHeight = () => {
     if (logPaneRef.current) {
-      const rect = logPaneRef.current.getBoundingClientRect();
-      const maxHeight = window.innerHeight - rect.top;
+      const rect = logPaneRef.current.getBoundingClientRect(); // Get the size of the log pane
+      const maxHeight = window.innerHeight - rect.top; // rect.top is the distance from the top of the window to the top of the log pane
       logPaneRef.current.style.maxHeight = `${maxHeight}px`;
     }
   };
 
-  // Update max height initially and whenever the window is resized or splitPaneDragged changes
+  // Update max height initially and whenever the window is resized
   useEffect(() => {
-    updateMaxHeight();
-    window.addEventListener("resize", updateMaxHeight);
-
-    return () => window.removeEventListener("resize", updateMaxHeight);
+    updateMaxHeight(); 
+    window.addEventListener("resize", updateMaxHeight); 
+    return () => window.removeEventListener("resize", updateMaxHeight); // Cleanup when the component is unmounted
   }, []);
 
   // This effect listens for changes in splitPaneDragged to adjust the max height
