@@ -6,29 +6,26 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/snippets/javascript";
 
-const CodePane = () => {
+const CodePane = ({ codeAndCodeChange }) => {
   const [code, setCode] = useState(``);
 
   // Fetch function to the algorithm model
   useEffect(() => {
-    // Assuming '/algorithms/' is the correct endpoint to fetch your algorithms
     fetch("/api/algorithms/")
       .then((response) => response.json())
       .then((data) => {
         // Handle the fetched data
-        setCode(data[2].code);
-        console.log("Fetched data: ", data);
+        setCode(data[1].code);
+        codeAndCodeChange(data[1].code); // Send the initial code to the parent component
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
   }, []);
 
-  const runAlgorithm = () => {
-  };
-
   function onChange(newValue) {
-    setCode(newValue);
+    setCode(newValue); // Update the code state
+    codeAndCodeChange(newValue); // Send the new code to the parent component
     // console.log(newValue);
   }
 

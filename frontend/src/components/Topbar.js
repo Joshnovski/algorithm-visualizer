@@ -2,7 +2,7 @@ import React from "react";
 import ProgressBar from "./ProgressBar";
 import SpeedSlider from "./SpeedSlider";
 
-const Topbar = ({ currentPath, toggleListPane, toggleCodePane }) => {
+const Topbar = ({ currentPath, toggleListPane, toggleCodePane, buildCode }) => {
   // Set max value of progress bar based on number of steps in algorithm
   const maxValue = 14;
 
@@ -34,7 +34,7 @@ const Topbar = ({ currentPath, toggleListPane, toggleCodePane }) => {
           <i class="fa-solid fa-bars"></i>
         </div>
         <div class="toolbar">
-          <div class="build-btn right-btn">
+          <div class="build-btn right-btn" onClick={buildCode}>
             <i class="fa-solid fa-wrench icon"></i>Build
           </div>
           <div class="play-btn right-btn">
