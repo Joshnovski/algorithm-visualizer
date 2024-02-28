@@ -6,9 +6,11 @@ import * as jsnx from "jsnetworkx";
 const DiagramPane = ({ algorithmCode }) => {
   const diagramRef = useRef(null);
 
-  useEffect(() => {
+  const initializeDiagram = () => {
     if (diagramRef.current) {
-      // Step 2: Ensure the div is mounted
+      // Clear existing content
+      diagramRef.current.innerHTML = '';
+
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
 
       // ALGORITHM CODE
@@ -41,7 +43,15 @@ const DiagramPane = ({ algorithmCode }) => {
         svg.style.margin = "auto";
       }
     }
-  }, [algorithmCode]); // Empty dependency array means this effect runs only once after initial render
+  };
+
+  useEffect(() => {
+    initializeDiagram();
+
+    return () => {
+      // Optional: Any cleanup logic if needed when the component unmounts or before re-rendering.
+    };
+  }, [algorithmCode]);
 
   return (
     <div ref={diagramRef} className="diagram-pane">
