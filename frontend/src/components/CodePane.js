@@ -15,7 +15,7 @@ const CodePane = ({ codeAndCodeChange }) => {
       .then((response) => response.json())
       .then((data) => {
         // Handle the fetched data
-        setCode(data[1].code);
+        setCode(data[0].code);
         codeAndCodeChange(data[1].code); // Send the initial code to the parent component
       })
       .catch((error) => {

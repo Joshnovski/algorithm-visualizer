@@ -1,60 +1,43 @@
-// import visualization libraries {
-const { Tracer, Array1DTracer, ChartTracer, LogTracer, Randomize, Layout, VerticalLayout } = require('algorithm-visualizer');
-// }
+// Generate Random Graph
+seedrandom("2", { global: true }); // Set fixed seed (Later allow user to set seed)
+const G = jsnx.fastGnpRandomGraph(7, 0.6); // Generate G(n, p) graph, n = nodes, p = probability of adding edge
+for (let n of G) {
+  G.node[n] = { seen: false }; // Mark each node initially as not visited
+}
 
-// define tracer variables {
-const chart = new ChartTracer();
-const tracer = new Array1DTracer();
-const logger = new LogTracer();
-Layout.setRoot(new VerticalLayout([chart, tracer, logger]));
-const D = Randomize.Array1D({ N: 15 });
-tracer.set(D);
-tracer.chart(chart);
-Tracer.delay();
-// }
+// Render graph
+canvas.nodes(G.nodes()).add();
+canvas.edges(G.edges()).add();
 
-// logger {
-logger.println(`original array = [${D.join(', ')}]`);
-// }
-let N = D.length;
-let swapped;
-do {
-  swapped = false;
-  // visualize {
-  tracer.select(N - 1);
-  Tracer.delay();
-  // }
-  for (let i = 1; i < N; i++) {
-    // visualize {
-    tracer.select(i);
-    Tracer.delay();
-    // }
-    if (D[i - 1] > D[i]) {
-      // logger {
-      logger.println(`swap ${D[i - 1]} and ${D[i]}`);
-      // }
-      const temp = D[i - 1];
-      D[i - 1] = D[i];
-      D[i] = temp;
-      swapped = true;
-      // visualize {
-      tracer.patch(i - 1, D[i - 1]);
-      tracer.patch(i, D[i]);
-      Tracer.delay();
-      tracer.depatch(i - 1);
-      tracer.depatch(i);
-      // }
-    }
-    // visualize {
-    tracer.deselect(i);
-    // }
+// Async function to wait for isPlaying to be true
+async function waitForIsPlaying() {
+  while (!isPlaying) {
+    await new Promise(resolve => setTimeout(resolve, 100)); // Wait for 100ms before checking again
   }
-  // visualize {
-  tracer.deselect(N - 1);
-  // }
-  N--;
-} while (swapped);
-// logger {
-logger.println(`sorted array = [${D.join(', ')}]`);
-// }
-  
+}
+
+// Recursive DFS function
+async function dfs(n) {
+  await waitForIsPlaying();
+  G.node[n].seen = true;
+  canvas.node(n).highlight().size("1.5x"); // Node identify as visited
+  canvas.node(n).color("#ba0d5b"); // Node color
+  canvas.pause(2);
+
+  for (let n2 of G.neighbors(n)) {
+    if (G.node[n2].seen) continue;
+    await waitForIsPlaying();
+    canvas.edge([n, n2]).traverse("blue");
+    await dfs(n2); // DFS on neighbor
+    canvas.edge([n2, n]).traverse("#ba0d5b");
+    canvas.node(n).highlight().size("1.5x");
+    canvas.pause(2);
+  }
+}
+dfs(0).then(() => {
+  for (let n of G) {
+    if (G.node[n].seen) {
+      canvas.node(n).highlight().size("1.5x");
+    }
+  }
+});

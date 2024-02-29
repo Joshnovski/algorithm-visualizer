@@ -3,21 +3,35 @@ import { createCanvas } from "algorithmx";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const DiagramPane = ({ algorithmCode }) => {
+const DiagramPane = ({ algorithmCode, isPlaying }) => {
   const diagramRef = useRef(null);
 
   const initializeDiagram = () => {
+    if (algorithmCode) {
+      console.log("Code Built");
+      console.log("isPlaying:", isPlaying);
+    } else {
+      console.log("Code Not Built");
+      console.log("isPlaying:", isPlaying);
+    }
+
     if (diagramRef.current) {
       // Clear existing content
-      diagramRef.current.innerHTML = '';
-
+      diagramRef.current.innerHTML = "";
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
 
       // ALGORITHM CODE
       console.log("RUN");
       try {
-        const executeCode = new Function('canvas', 'jsnx', 'seedrandom', 'console', algorithmCode);
-        executeCode(canvas, jsnx, seedrandom, console);
+        const executeCode = new Function(
+          "canvas",
+          "jsnx",
+          "seedrandom",
+          "console",
+          "isPlaying",
+          algorithmCode
+        );
+        executeCode(canvas, jsnx, seedrandom, console, isPlaying);
       } catch (e) {
         console.error("Error executing algorithm code:", e);
       }
@@ -45,18 +59,18 @@ const DiagramPane = ({ algorithmCode }) => {
     }
   };
 
+  // Initialize and check state changes for the algorithm code
   useEffect(() => {
     initializeDiagram();
-
     return () => {
-      // Optional: Any cleanup logic if needed when the component unmounts or before re-rendering.
+      if (diagramRef.current) {
+        // Clear the diagram if isPlaying becomes false or before re-rendering
+        diagramRef.current.innerHTML = "";
+      }
     };
-  }, [algorithmCode]);
+  }, [algorithmCode, isPlaying]);
 
-  return (
-    <div ref={diagramRef} className="diagram-pane">
-    </div>
-  );
+  return <div ref={diagramRef} className="diagram-pane"></div>;
 };
 
 export default DiagramPane;

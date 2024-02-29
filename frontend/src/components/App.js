@@ -9,6 +9,7 @@ import LogPane from './LogPane';
 
 export default function App() {
 
+    const [isPlaying, setIsPlaying] = useState(false);
     const [storedCode, setStoredCode] = useState('');
     const [algorithmCode, setAlgorithmCode] = useState('');
     const [splitPaneDragged, setSplitPaneDragged] = useState(false);
@@ -33,6 +34,10 @@ export default function App() {
         setCurrentPath(path);
     };
 
+    // Toggle play/pause
+    const togglePlayPause = () => {
+        setIsPlaying((prev) => !prev);
+    };
     // Toggle the list pane and code pane
     const toggleListPane = () => {
         if (codePaneWidth === '100%') {
@@ -65,13 +70,13 @@ export default function App() {
     // Render the app
     return (
         <div>
-            <Topbar currentPath={currentPath} toggleListPane={toggleListPane} toggleCodePane={toggleCodePane} buildCode={handleCodeChange} />
+            <Topbar currentPath={currentPath} toggleListPane={toggleListPane} toggleCodePane={toggleCodePane} buildCode={handleCodeChange} togglePlayPause={togglePlayPause} />
             <SplitPane split="vertical" minSize={0} size={listPaneWidth} defaultSize={listPaneWidth} class="split-pane" style={{ height: 'calc(100vh - 65px)' }}>
                 <ListPane onItemSelect={handleDropdownClick} currentPath={currentPath} />
                 <div style={{display: 'flex', height: '100%'}}>
                     <SplitPane split="vertical" minSize={0} size={codePaneWidth}  defaultSize={codePaneWidth} primary="second">
                         <SplitPane split="horizontal" minSize={0} defaultSize="50%" onDragFinished={handleDragFinished}>
-                            <DiagramPane algorithmCode={algorithmCode}/>
+                            <DiagramPane algorithmCode={algorithmCode} isPlaying={isPlaying}/>
                             <LogPane splitPaneDragged={splitPaneDragged}/>
                         </SplitPane>
                         <CodePane codeAndCodeChange={storeCodeAndCodeChange}/>
