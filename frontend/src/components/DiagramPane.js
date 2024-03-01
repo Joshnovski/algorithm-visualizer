@@ -6,12 +6,25 @@ import * as jsnx from "jsnetworkx";
 const DiagramPane = ({ algorithmCode, isPlaying }) => {
   const diagramRef = useRef(null);
 
+//////////////////////////////////
+  useEffect(() => {
+    let intervalId;
+    if (!isPlaying) {
+      intervalId = setInterval(() => {
+        // Action to perform when isPlaying is true
+        console.log('Not Playing');
+      }, 100); // Adjust interval time as needed
+    } else {
+      console.log('Playing');
+    }
+    return () => clearInterval(intervalId);
+  }, [isPlaying]);
+//////////////////////////////////
+
   const initializeDiagram = () => {
     if (algorithmCode) {
-      console.log("Code Built");
       console.log("isPlaying:", isPlaying);
     } else {
-      console.log("Code Not Built");
       console.log("isPlaying:", isPlaying);
     }
 
@@ -21,7 +34,6 @@ const DiagramPane = ({ algorithmCode, isPlaying }) => {
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
 
       // ALGORITHM CODE
-      console.log("RUN");
       try {
         const executeCode = new Function(
           "canvas",
@@ -68,7 +80,7 @@ const DiagramPane = ({ algorithmCode, isPlaying }) => {
         diagramRef.current.innerHTML = "";
       }
     };
-  }, [algorithmCode, isPlaying]);
+  }, [algorithmCode]);
 
   return <div ref={diagramRef} className="diagram-pane"></div>;
 };
