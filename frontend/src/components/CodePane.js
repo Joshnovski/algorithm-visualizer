@@ -16,7 +16,7 @@ const CodePane = ({ codeAndCodeChange }) => {
       .then((data) => {
         // Handle the fetched data
         setCode(data[0].code);
-        codeAndCodeChange(data[1].code); // Send the initial code to the parent component
+        codeAndCodeChange(data[0].code); // Send the initial code to the parent component, needs to match setCode
       })
       .catch((error) => {
         console.error("Error fetching data: ", error);

@@ -1,6 +1,6 @@
 // Generate Random Graph
 seedrandom("2", { global: true }); // Set fixed seed (Later allow user to set seed)
-const G = jsnx.fastGnpRandomGraph(7, 0.6); // Generate G(n, p) graph, n = nodes, p = probability of adding edge
+const G = jsnx.fastGnpRandomGraph(5, 0.6); // Generate G(n, p) graph, n = nodes, p = probability of adding edge
 for (let n of G) {
   G.node[n] = { seen: false }; // Mark each node initially as not visited
 }
@@ -25,10 +25,27 @@ function dfs(n) {
     canvas.pause(2);
   }
 }
-dfs(0); // Start DFS from node 0
-// Immediately after DFS, highlight all seen nodes
-for (let n of G) {
-  if (G.node[n].seen) {
-    canvas.node(n).highlight().size("1.5x");
-  }
+
+// Function to wait until isPlaying is true
+function waitForIsPlaying() {
+  return new Promise((resolve) => {
+    const intervalId = setInterval(() => {
+      if (isPlaying) { // Assuming isPlaying is a condition that can be checked
+        clearInterval(intervalId);
+        resolve();
+      }
+    }, 100); // Check every 100ms
+  });
 }
+
+// Start DFS after ensuring isPlaying is true
+waitForIsPlaying().then(() => {
+  dfs(0); // Start DFS from node 0
+
+  // Immediately after DFS, highlight all seen nodes
+  for (let n of G) {
+    if (G.node[n].seen) {
+      canvas.node(n).highlight().size("1.5x");
+    }
+  }
+});

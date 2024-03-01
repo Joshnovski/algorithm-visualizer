@@ -10,8 +10,8 @@ const SpeedSlider = () => {
                 thumbClassName="speed-slider-thumb"
                 trackClassName="speed-slider-track"
                 min={0}
-                max={10}
-                defaultValue={5}
+                max={6}
+                defaultValue={3}
                 // renderThumb={(props) => <div {...props}></div>}
              />
         </div>
