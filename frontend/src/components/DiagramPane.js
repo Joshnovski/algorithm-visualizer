@@ -3,16 +3,12 @@ import { createCanvas } from "algorithmx";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const DiagramPane = ({ algorithmCode, isPlaying }) => {
+const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
+  console.log(speedValue);
   const diagramRef = useRef(null);
 
   const initializeDiagram = () => {
-    // if (algorithmCode) {
-    //   console.log("isPlaying:", isPlaying);
-    // } else {
-    //   console.log("isPlaying:", isPlaying);
-    // }
-
+ 
     if (diagramRef.current) {
       // Clear existing content
       diagramRef.current.innerHTML = "";
@@ -26,9 +22,10 @@ const DiagramPane = ({ algorithmCode, isPlaying }) => {
           "seedrandom",
           "console",
           "isPlaying",
+          "speedValue",
           algorithmCode
         );
-        executeCode(canvas, jsnx, seedrandom, console, isPlaying);
+        executeCode(canvas, jsnx, seedrandom, console, isPlaying, speedValue);
       } catch (e) {
         console.error("Error executing algorithm code:", e);
       }
@@ -65,7 +62,7 @@ const DiagramPane = ({ algorithmCode, isPlaying }) => {
         diagramRef.current.innerHTML = "";
       }
     };
-  }, [algorithmCode, isPlaying]);
+  }, [algorithmCode, isPlaying, speedValue]);
 
   return <div ref={diagramRef} className="diagram-pane"></div>;
 };

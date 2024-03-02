@@ -14,7 +14,7 @@ function dfs(n) {
   G.node[n].seen = true;
   canvas.node(n).highlight().size("1.5x"); // Node identify as visited
   canvas.node(n).color("#ba0d5b"); // Node color
-  canvas.pause(2);
+  canvas.pause(speedValue);
 
   for (let n2 of G.neighbors(n)) {
     if (G.node[n2].seen) continue;
@@ -22,7 +22,7 @@ function dfs(n) {
     dfs(n2); // DFS on neighbor
     canvas.edge([n2, n]).traverse("#ba0d5b");
     canvas.node(n).highlight().size("1.5x");
-    canvas.pause(2);
+    canvas.pause(speedValue);
   }
 }
 

@@ -9,6 +9,7 @@ import LogPane from "./LogPane";
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [speedValue, setSpeedValue] = useState(3); // set initial value to 3
   const [storedCode, setStoredCode] = useState("");
   const [algorithmCode, setAlgorithmCode] = useState("");
   const [splitPaneDragged, setSplitPaneDragged] = useState(false);
@@ -20,6 +21,10 @@ export default function App() {
     window.innerWidth < 500 ? "0%" : "50%"
   );
 
+  // Update the speed value
+  const handleSpeedValueChange = (value) => {
+    setSpeedValue(value);
+  };
   // Update the algorithm code for digram and log panes
   const storeCodeAndCodeChange = (code) => {
     setStoredCode(code);
@@ -77,6 +82,7 @@ export default function App() {
         toggleCodePane={toggleCodePane}
         buildCode={handleCodeChange}
         togglePlayPause={togglePlayPause}
+        speedValue={handleSpeedValueChange}
       />
       <SplitPane
         split="vertical"
@@ -107,6 +113,7 @@ export default function App() {
               <DiagramPane
                 algorithmCode={algorithmCode}
                 isPlaying={isPlaying}
+                speedValue={speedValue}
               />
               <LogPane splitPaneDragged={splitPaneDragged} />
             </SplitPane>

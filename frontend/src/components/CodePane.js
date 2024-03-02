@@ -22,7 +22,6 @@ const CodePane = ({ codeAndCodeChange }) => {
         console.error("Error fetching data: ", error);
       });
   }, []);
-
   function onChange(newValue) {
     setCode(newValue); // Update the code state
     codeAndCodeChange(newValue); // Send the new code to the parent component
