@@ -2,26 +2,26 @@ import React, { useEffect, useState, useRef } from "react";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const LogPane = ({ splitPaneDragged, logCode }) => {
+const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying }) => {
   console.log(logCode);
   const [messages, setMessages] = useState([]);
   const logPaneRef = useRef(null);
 
-  const addInstantMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-  };
-
-  const addDelayedMessage = (newMessage) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, newMessage]);
-        resolve();
-      }, 1800); // Delay in milliseconds
-    });
-  };
-
   const initializeLogger = () => {
     setMessages([]); // Clear the log
+
+    const addInstantMessage = (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+    };
+  
+    const addDelayedMessage = (newMessage) => {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          setMessages((prevMessages) => [...prevMessages, newMessage]);
+          resolve();
+        }, speedValue * 1000); // Delay in milliseconds
+      });
+    };
 
     try {
       // Define arguments for the new function
@@ -44,7 +44,7 @@ const LogPane = ({ splitPaneDragged, logCode }) => {
 
   useEffect(() => {
     initializeLogger();
-  }, [logCode]);
+  }, [logCode, speedValue, isPlaying]);
 
   // Update max height initially and whenever the window is resized
   useEffect(() => {
