@@ -9,9 +9,11 @@ import LogPane from "./LogPane";
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speedValue, setSpeedValue] = useState(""); // set initial value to 3
-  const [storedCode, setStoredCode] = useState("");
+  const [speedValue, setSpeedValue] = useState("");
+  const [diagramStoredCode, setDiagramStoredCode] = useState("");
+  const [logsStoredCode, setLogsStoredCode] = useState("");
   const [algorithmCode, setAlgorithmCode] = useState("");
+  const [logCode, setLogCode] = useState("");
   const [splitPaneDragged, setSplitPaneDragged] = useState(false);
   const [currentPath, setCurrentPath] = useState([]);
   const [listPaneWidth, setListPaneWidth] = useState(
@@ -25,13 +27,21 @@ export default function App() {
   const handleSpeedValueChange = (value) => {
     setSpeedValue(value);
   };
-  // Update the algorithm code for digram and log panes
-  const storeCodeAndCodeChange = (code) => {
-    setStoredCode(code);
+  // Update the algorithm code for digram pane
+  const diagramCodeAndChanges = (code) => {
+    setDiagramStoredCode(code);
+  };
+  // Update the algorithm code for log pane
+  const logsCodeAndChanges = (code) => {
+    setLogsStoredCode(code);
   };
   //
   const handleCodeChange = () => {
-    setAlgorithmCode(storedCode);
+    setAlgorithmCode(diagramStoredCode);
+    setLogCode(logsStoredCode);
+    console.log("Clicked");
+    console.log(diagramStoredCode);
+    console.log(logsStoredCode);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {
@@ -115,9 +125,17 @@ export default function App() {
                 isPlaying={isPlaying}
                 speedValue={speedValue}
               />
-              <LogPane splitPaneDragged={splitPaneDragged} />
+              <LogPane
+                splitPaneDragged={splitPaneDragged}
+                logCode={logCode}
+                speedValue={speedValue}
+                isPlaying={isPlaying}
+              />
             </SplitPane>
-            <CodePane codeAndCodeChange={storeCodeAndCodeChange} />
+            <CodePane
+              diagramCodeAndChanges={diagramCodeAndChanges}
+              logsCodeAndChanges={logsCodeAndChanges}
+            />
           </SplitPane>
         </div>
       </SplitPane>
