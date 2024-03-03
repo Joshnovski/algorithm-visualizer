@@ -82,7 +82,7 @@ export default function App() {
         toggleCodePane={toggleCodePane}
         buildCode={handleCodeChange}
         togglePlayPause={togglePlayPause}
-        speedValue={handleSpeedValueChange}
+        speedValueChange={handleSpeedValueChange}
       />
       <SplitPane
         split="vertical"
