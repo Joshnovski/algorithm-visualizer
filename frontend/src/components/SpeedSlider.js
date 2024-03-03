@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
 const SpeedSlider = ({ speedValueChange }) => {
-  const [value, setValue] = useState(3); // set initial value to 3
+
+  const initialSpeed = 1.8;
+  const [value, setValue] = useState(initialSpeed); // set initial value to 3
 
   useEffect(() => {
     speedValueChange(value);
@@ -15,11 +17,12 @@ const SpeedSlider = ({ speedValueChange }) => {
         className="speed-slider"
         thumbClassName="speed-slider-thumb"
         trackClassName="speed-slider-track"
-        min={0}
-        max={6}
-        defaultValue={3}
+        min={0.4}
+        max={3.0}
+        step={0.2}
+        invert
+        defaultValue={initialSpeed}
         onChange={(newValue) => setValue(newValue)}
-        // renderThumb={(props) => <div {...props}></div>}
       />
     </div>
   );

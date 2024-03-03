@@ -9,7 +9,7 @@ import LogPane from "./LogPane";
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [speedValue, setSpeedValue] = useState(3); // set initial value to 3
+  const [speedValue, setSpeedValue] = useState(""); // set initial value to 3
   const [storedCode, setStoredCode] = useState("");
   const [algorithmCode, setAlgorithmCode] = useState("");
   const [splitPaneDragged, setSplitPaneDragged] = useState(false);
