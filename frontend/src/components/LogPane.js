@@ -3,7 +3,6 @@ import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
 const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying }) => {
-  console.log(logCode);
   const [messages, setMessages] = useState([]);
   const logPaneRef = useRef(null);
 
@@ -25,9 +24,9 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying }) => {
 
     try {
       // Define arguments for the new function
-      const args = ['addInstantMessage', 'addDelayedMessage', 'setMessages', 'console', 'seedrandom', 'jsnx'];
+      const args = ['addInstantMessage', 'addDelayedMessage', 'setMessages', 'console', 'seedrandom', 'jsnx', 'isPlaying'];
       const executeCode = new Function(...args, logCode);
-      executeCode(addInstantMessage, addDelayedMessage, setMessages, console, seedrandom, jsnx);
+      executeCode(addInstantMessage, addDelayedMessage, setMessages, console, seedrandom, jsnx, isPlaying);
     } catch (e) {
       console.error("Error executing algorithm code:", e);
     }

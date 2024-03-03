@@ -39,9 +39,6 @@ export default function App() {
   const handleCodeChange = () => {
     setAlgorithmCode(diagramStoredCode);
     setLogCode(logsStoredCode);
-    console.log("Clicked");
-    console.log(diagramStoredCode);
-    console.log(logsStoredCode);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {

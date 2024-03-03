@@ -54,8 +54,23 @@ for (let n of G) {
 
 // RENDER LOGS
 
-// DFS algorithm with message logging
+// Function to wait until isPlaying is true
+function waitForIsPlaying() {
+  return new Promise((resolve) => {
+    const intervalId = setInterval(() => {
+      if (isPlaying) {
+        clearInterval(intervalId);
+        resolve();
+      }
+    }, 100); // Check every 100ms
+  });
+}
+
+// Modified DFS algorithm with message logging and isPlaying check
 const dfs = async (n, parent = null) => {
+  // Wait for isPlaying to be true before proceeding
+  await waitForIsPlaying();
+
   // Mark the node as seen.
   G.node[n].seen = true;
   // If this is the start node, log the initial message.
@@ -80,7 +95,7 @@ const dfs = async (n, parent = null) => {
   }
 };
 
-// Start DFS and message logging
+// Start DFS and message logging with isPlaying check
 (async () => {
   await dfs(0); // Start the DFS from node 0
   addDelayedMessage("DFS complete!");
