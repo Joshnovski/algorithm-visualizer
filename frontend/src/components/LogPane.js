@@ -3,13 +3,14 @@ import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
 const LogPane = ({ splitPaneDragged }) => {
-  const [messages, setMessages] = useState([]); // Set messages as an empty array initially
-  const logPaneRef = useRef(null); // Initialize a reference to the log pane as null
 
-  // Functions to add messages
+  const [messages, setMessages] = useState([]);
+  const logPaneRef = useRef(null);
+
   const addInstantMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]); // Calling this updates messages state
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
+
   const addDelayedMessage = (newMessage) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -19,7 +20,7 @@ const LogPane = ({ splitPaneDragged }) => {
     });
   };
 
-  useEffect(() => {
+  const initializeLogger = () => {
     // ALGORITHM LOGGER AND TIMING
     // Generate Random Graph
     seedrandom("2", { global: true }); // Set fixed seed (Later allow user to set seed)
@@ -59,7 +60,7 @@ const LogPane = ({ splitPaneDragged }) => {
       await dfs(0); // Start the DFS from node 0
       addDelayedMessage("DFS complete!");
     })();
-  }, []);
+  };
 
   // Adjust the max-height of the log pane on window resize
   const updateMaxHeight = () => {
@@ -69,6 +70,11 @@ const LogPane = ({ splitPaneDragged }) => {
       logPaneRef.current.style.maxHeight = `${maxHeight}px`;
     }
   };
+
+  // Initialize the logger when the component is mounted
+  useEffect(() => {
+    initializeLogger();
+  }, []);
 
   // Update max height initially and whenever the window is resized
   useEffect(() => {
@@ -80,7 +86,7 @@ const LogPane = ({ splitPaneDragged }) => {
   // This effect listens for changes in splitPaneDragged to adjust the max height
   useEffect(() => {
     updateMaxHeight();
-  }, [splitPaneDragged]); // React to splitPaneDragged changes
+  }, [splitPaneDragged]);
 
   return (
     <div ref={logPaneRef} className="log-pane">
