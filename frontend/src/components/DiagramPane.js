@@ -30,6 +30,7 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
       canvasRef.current = canvas;
       canvas.withQ().queue('q1').stop()
+      let stepCounter = 0;
       // ALGORITHM CODE
       try {
         const executeCode = new Function(
@@ -39,9 +40,11 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
           "console",
           "isPlaying",
           "speedValue",
+          "stepCounter",
           algorithmCode
         );
-        executeCode(canvas, jsnx, seedrandom, console, isPlaying, speedValue);
+        const returnedStepCounter = executeCode(canvas, jsnx, seedrandom, console, isPlaying, speedValue, stepCounter);
+        console.log("Step Counter Outside: ", returnedStepCounter);
       } catch (e) {
         console.error("Error executing algorithm code:", e);
       }

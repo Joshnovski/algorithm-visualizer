@@ -17,6 +17,7 @@ function dfs(n) {
   G.node[n].seen = true;
   q.node(n).highlight().size("1.5x"); // Node identify as visited
   q.node(n).color("#ba0d5b"); // Node color
+  stepCounter++;
   q.pause(speedValue);
 
   for (let n2 of G.neighbors(n)) {
@@ -25,13 +26,15 @@ function dfs(n) {
     dfs(n2); // DFS on neighbor
     q.edge([n2, n]).traverse("#ba0d5b");
     q.node(n).highlight().size("1.5x");
+    stepCounter++;
     q.pause(speedValue);
   }
 }
 
-// TIMING and INITIALIZATION
-
 dfs(0);
+// TIMING and INITIALIZATION
+return stepCounter;
+// return stepCounter;
 // for (let n of G) {
 //   if (G.node[n].seen) {
 //     canvas.node(n).highlight().size("1.5x");
