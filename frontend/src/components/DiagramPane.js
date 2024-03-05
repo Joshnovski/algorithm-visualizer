@@ -6,6 +6,21 @@ import * as jsnx from "jsnetworkx";
 const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
   console.log(speedValue);
   const diagramRef = useRef(null);
+  const canvasRef = useRef(null);
+
+  const player = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    if (!isPlaying) {
+      canvas.withQ().queue('q1').stop()
+      isPlaying = true;
+      console.log("Paused")
+    } else {
+      canvas.withQ().queue('q1').start()
+      isPlaying = false;
+      console.log("Resumed")
+    }
+  };
 
   const initializeDiagram = () => {
  
@@ -13,7 +28,8 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
       // Clear existing content
       diagramRef.current.innerHTML = "";
       const canvas = createCanvas(diagramRef.current); // Use the ref as the selector
-
+      canvasRef.current = canvas;
+      canvas.withQ().queue('q1').stop()
       // ALGORITHM CODE
       try {
         const executeCode = new Function(
@@ -56,13 +72,17 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
   // Initialize and check state changes for the algorithm code
   useEffect(() => {
     initializeDiagram();
+    // player();
     return () => {
       if (diagramRef.current) {
-        // Clear the diagram if isPlaying becomes false or before re-rendering
         diagramRef.current.innerHTML = "";
       }
     };
-  }, [algorithmCode, isPlaying, speedValue]);
+  }, [algorithmCode, speedValue]);
+
+  useEffect(() => {
+    player();
+  }, [isPlaying]);
 
   return <div ref={diagramRef} className="diagram-pane"></div>;
 };

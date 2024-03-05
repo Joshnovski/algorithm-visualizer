@@ -13,44 +13,39 @@ canvas.edges(G.edges()).add();
 
 // Recursive DFS function
 function dfs(n) {
+  const q = canvas.withQ('q1')
   G.node[n].seen = true;
-  canvas.node(n).highlight().size("1.5x"); // Node identify as visited
-  canvas.node(n).color("#ba0d5b"); // Node color
-  canvas.pause(speedValue);
+  q.node(n).highlight().size("1.5x"); // Node identify as visited
+  q.node(n).color("#ba0d5b"); // Node color
+  q.pause(speedValue);
 
   for (let n2 of G.neighbors(n)) {
     if (G.node[n2].seen) continue;
-    canvas.edge([n, n2]).traverse("blue");
+    q.edge([n, n2]).traverse("blue");
     dfs(n2); // DFS on neighbor
-    canvas.edge([n2, n]).traverse("#ba0d5b");
-    canvas.node(n).highlight().size("1.5x");
-    canvas.pause(speedValue);
+    q.edge([n2, n]).traverse("#ba0d5b");
+    q.node(n).highlight().size("1.5x");
+    q.pause(speedValue);
   }
 }
 
 // TIMING and INITIALIZATION
 
-function waitForIsPlaying() {
-  return new Promise((resolve) => {
-    const intervalId = setInterval(() => {
-      if (isPlaying) {
-        clearInterval(intervalId);
-        resolve();
-      }
-    }, 100); // Check every 100ms
-  });
-}
-
-waitForIsPlaying().then(() => {
 dfs(0);
+// for (let n of G) {
+//   if (G.node[n].seen) {
+//     canvas.node(n).highlight().size("1.5x");
+//   }
+// }
+
 
 // Immediately after DFS, highlight all seen nodes
-for (let n of G) {
-  if (G.node[n].seen) {
-    canvas.node(n).highlight().size("1.5x");
-  }
-}
-});
+// for (let n of G) {
+//   if (G.node[n].seen) {
+//     canvas.node(n).highlight().size("1.5x");
+//   }
+// }
+
 
 // RENDER LOGS
 

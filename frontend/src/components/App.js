@@ -23,6 +23,14 @@ export default function App() {
     window.innerWidth < 500 ? "0%" : "50%"
   );
 
+  // Increase the step value
+  const handleStepIncrease = () => {
+    console.log("Step increased");
+  };
+  // Decrease the step value
+  const handleStepDecrease = () => {
+    console.log("Step decreased");
+  };
   // Update the speed value
   const handleSpeedValueChange = (value) => {
     setSpeedValue(value);
@@ -90,6 +98,8 @@ export default function App() {
         buildCode={handleCodeChange}
         togglePlayPause={togglePlayPause}
         speedValueChange={handleSpeedValueChange}
+        externalIncreaseStep={handleStepIncrease}
+        externalDecreaseStep={handleStepDecrease}
       />
       <SplitPane
         split="vertical"
