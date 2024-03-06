@@ -8,7 +8,7 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
   const diagramRef = useRef(null);
   const canvasRef = useRef(null);
 
-  const player = () => {
+  const diagramPlayer = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     if (!isPlaying) {
@@ -84,7 +84,7 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
   }, [algorithmCode, speedValue]);
 
   useEffect(() => {
-    player();
+    diagramPlayer();
   }, [isPlaying]);
 
   return <div ref={diagramRef} className="diagram-pane"></div>;
