@@ -34,67 +34,30 @@ function dfs(n) {
 dfs(0);
 // TIMING and INITIALIZATION
 return stepCounter;
-// return stepCounter;
-// for (let n of G) {
-//   if (G.node[n].seen) {
-//     canvas.node(n).highlight().size("1.5x");
-//   }
-// }
 
-
-// Immediately after DFS, highlight all seen nodes
-// for (let n of G) {
-//   if (G.node[n].seen) {
-//     canvas.node(n).highlight().size("1.5x");
-//   }
-// }
 
 
 // RENDER LOGS
 
-// Function to wait until isPlaying is true
-function waitForIsPlaying() {
-  return new Promise((resolve) => {
-    const intervalId = setInterval(() => {
-      if (isPlaying) {
-        clearInterval(intervalId);
-        resolve();
-      }
-    }, 100); // Check every 100ms
-  });
-}
-
-// Modified DFS algorithm with message logging and isPlaying check
-const dfs = async (n, parent = null) => {
-  // Wait for isPlaying to be true before proceeding
-  await waitForIsPlaying();
-
-  // Mark the node as seen.
+function dfs(n, parent = null, logs = []) {
   G.node[n].seen = true;
-  // If this is the start node, log the initial message.
   if (parent === null) {
-    addInstantMessage(`Start at node ${n}`);
+    logs.push(`Start at node ${n}`);
   } else {
-    // Otherwise, log the traversal to this node from its parent.
-    await addDelayedMessage(`Traverse edge [${parent}, ${n}]`);
+    logs.push(`Traverse edge [${parent}, ${n}]`);
   }
-
-  // Iterate through all neighbors of node n.
   for (let n2 of G.neighbors(n)) {
     if (!G.node[n2].seen) {
-      // If the neighbor has not been seen, continue the DFS recursively.
-      await dfs(n2, n);
+      dfs(n2, n, logs);
     }
   }
-
-  // After exploring all neighbors of n, if this is not the start node, log the backtracking.
   if (parent !== null) {
-    await addDelayedMessage(`Backtracking edge [${n}, ${parent}]`);
+    logs.push(`Backtracking edge [${n}, ${parent}]`);
   }
+  return logs;
 };
 
-// Start DFS and message logging with isPlaying check
-(async () => {
-  await dfs(0); // Start the DFS from node 0
-  addDelayedMessage("DFS complete!");
-})();
+const logs = dfs(0);
+logs.push("DFS complete!");
+// console.log(logs);
+return logs;
