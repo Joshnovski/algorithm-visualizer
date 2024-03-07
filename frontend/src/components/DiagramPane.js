@@ -3,8 +3,7 @@ import { createCanvas } from "algorithmx";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
-  console.log(speedValue);
+const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps }) => {
   const diagramRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -14,11 +13,11 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
     if (!isPlaying) {
       canvas.withQ().queue('q1').stop()
       isPlaying = true;
-      console.log("Paused")
+      // console.log("Paused")
     } else {
       canvas.withQ().queue('q1').start()
       isPlaying = false;
-      console.log("Resumed")
+      // console.log("Resumed")
     }
   };
 
@@ -43,8 +42,8 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue }) => {
           "stepCounter",
           algorithmCode
         );
-        const returnedStepCounter = executeCode(canvas, jsnx, seedrandom, console, isPlaying, speedValue, stepCounter);
-        console.log("Step Counter Outside: ", returnedStepCounter);
+        const returnedTotalSteps = executeCode(canvas, jsnx, seedrandom, console, isPlaying, speedValue, stepCounter);
+        totalSteps(returnedTotalSteps);
       } catch (e) {
         console.error("Error executing algorithm code:", e);
       }

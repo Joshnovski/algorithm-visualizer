@@ -23,6 +23,10 @@ export default function App() {
     window.innerWidth < 500 ? "0%" : "50%"
   );
 
+  // Handle Total steps
+  const handleTotalSteps = (steps) => {
+    console.log("Total Steps: ", steps);
+  };
   // Increase the step value
   const handleStepIncrease = () => {
     console.log("Step increased");
@@ -131,6 +135,7 @@ export default function App() {
                 algorithmCode={algorithmCode}
                 isPlaying={isPlaying}
                 speedValue={speedValue}
+                totalSteps={handleTotalSteps}
               />
               <LogPane
                 splitPaneDragged={splitPaneDragged}
