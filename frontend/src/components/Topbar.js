@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
 import SpeedSlider from "./SpeedSlider";
 
@@ -11,9 +11,16 @@ const Topbar = ({
   speedValueChange,
   externalIncreaseStep,
   externalDecreaseStep,
+  totalSteps,
 }) => {
   // Set max value of progress bar based on number of steps in algorithm
-  const maxValue = 14;
+  const [newTotalSteps, setNewTotalSteps] = useState(1);
+  useEffect(() => {
+    setNewTotalSteps(totalSteps || 1);
+  }, [totalSteps]);
+    const maxValue = newTotalSteps;
+
+    // const maxValue = totalSteps;
 
   return (
     <nav class="topbar">
