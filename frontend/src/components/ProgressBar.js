@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const ProgressBar = ({ maxValue, externalIncreaseStep, externalDecreaseStep }) => {
-    const [currentValue, setCurrentValue] = useState(1);
+    const [currentValue, setCurrentValue] = useState(0);
 
     const internalIncreaseStep = () => {
         setCurrentValue(prev => (prev < maxValue ? prev + 1 : maxValue));
@@ -10,7 +10,7 @@ const ProgressBar = ({ maxValue, externalIncreaseStep, externalDecreaseStep }) =
     };
 
     const internalDecreaseStep = () => {
-        setCurrentValue(prev => (prev > 1 ? prev - 1 : 1));
+        setCurrentValue(prev => (prev > 0 ? prev - 1 : 0));
         if (externalDecreaseStep) externalDecreaseStep();
     };
 
