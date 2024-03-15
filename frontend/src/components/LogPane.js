@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying }) => {
+const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuild }) => {
   const [messages, setMessages] = useState([]);
   const [allLogs, setAllLogs] = useState([]);
   const logPaneRef = useRef(null);
@@ -58,7 +58,7 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying }) => {
   // USE EFFECT HOOKS
   useEffect(() => {
     initializeLogger();
-  }, [logCode]);
+  }, [logCode, triggerBuild]);
 
   useEffect(() => {
     logPlayer();

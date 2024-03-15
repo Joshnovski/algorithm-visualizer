@@ -3,7 +3,7 @@ import { createCanvas } from "algorithmx";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps }) => {
+const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, triggerBuild }) => {
   const diagramRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -80,7 +80,7 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps }) => {
         diagramRef.current.innerHTML = "";
       }
     };
-  }, [algorithmCode, speedValue]);
+  }, [triggerBuild, algorithmCode, speedValue]);
 
   useEffect(() => {
     diagramPlayer();

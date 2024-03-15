@@ -14,6 +14,7 @@ export default function App() {
   const [diagramStoredCode, setDiagramStoredCode] = useState("");
   const [logsStoredCode, setLogsStoredCode] = useState("");
   const [algorithmCode, setAlgorithmCode] = useState("");
+  const [triggerBuild, setTriggerBuild] = useState(false);
   const [logCode, setLogCode] = useState("");
   const [splitPaneDragged, setSplitPaneDragged] = useState(false);
   const [currentPath, setCurrentPath] = useState([]);
@@ -52,6 +53,7 @@ export default function App() {
   const handleCodeChange = () => {
     setAlgorithmCode(diagramStoredCode);
     setLogCode(logsStoredCode);
+    setTriggerBuild((prev) => !prev);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {
@@ -138,12 +140,14 @@ export default function App() {
                 isPlaying={isPlaying}
                 speedValue={speedValue}
                 totalSteps={handleTotalSteps}
+                triggerBuild={triggerBuild}
               />
               <LogPane
                 splitPaneDragged={splitPaneDragged}
                 logCode={logCode}
                 speedValue={speedValue}
                 isPlaying={isPlaying}
+                triggerBuild={triggerBuild}
               />
             </SplitPane>
             <CodePane
