@@ -1,8 +1,14 @@
 // ProgressBar.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const ProgressBar = ({ maxValue, externalIncreaseStep}) => {
+const ProgressBar = ({ maxValue, externalIncreaseStep, currentStep}) => {
     const [currentValue, setCurrentValue] = useState(0);
+
+    useEffect(() => {
+        if (currentStep === 0) {
+            setCurrentValue(0);
+        }
+    }, [currentStep]);
 
     const internalIncreaseStep = () => {
         setCurrentValue(prev => (prev < maxValue ? prev + 1 : maxValue));

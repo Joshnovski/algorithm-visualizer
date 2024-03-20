@@ -106,6 +106,7 @@ export default function App() {
         speedValueChange={handleSpeedValueChange}
         externalIncreaseStep={handleStepIncrease}
         totalSteps={totalSteps}
+        currentStep={currentStep}
       />
       <SplitPane
         split="vertical"
