@@ -30,12 +30,6 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
       }, speedValue * 1000);
     }
   };
-  const logStep = () => {
-    if (messageIndexRef.current < allLogs.length) {
-      setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
-      messageIndexRef.current += 1;
-    }
-  };
 
   // FUNCTION TO EXECUTE THE ALGORITHM CODE
   const initializeLogger = () => {
@@ -72,7 +66,7 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
   }, [isPlaying, speedValue, allLogs]);
 
   useEffect(() => {
-    logStep();
+    outputMessage();
   }, [currentStep]);
 
   useEffect(() => {
