@@ -145,6 +145,7 @@ export default function App() {
                 speedValue={speedValue}
                 isPlaying={isPlaying}
                 triggerBuild={triggerBuild}
+                currentStep={currentStep}
               />
             </SplitPane>
             <CodePane

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuild }) => {
+const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuild, currentStep }) => {
   const [messages, setMessages] = useState([]);
   const [allLogs, setAllLogs] = useState([]);
   const logPaneRef = useRef(null);
@@ -28,6 +28,12 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
       intervalIdRef.current = setInterval(() => {
         outputMessage();
       }, speedValue * 1000);
+    }
+  };
+  const logStep = () => {
+    if (messageIndexRef.current < allLogs.length) {
+      setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
+      messageIndexRef.current += 1;
     }
   };
 
@@ -64,6 +70,10 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
     logPlayer();
     return () => clearInterval(intervalIdRef.current); 
   }, [isPlaying, speedValue, allLogs]);
+
+  useEffect(() => {
+    logStep();
+  }, [currentStep]);
 
   useEffect(() => {
     updateMaxHeight();
