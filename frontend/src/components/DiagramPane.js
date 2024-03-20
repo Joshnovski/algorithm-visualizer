@@ -3,7 +3,7 @@ import { createCanvas } from "algorithmx";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, triggerBuild }) => {
+const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, triggerBuild, currentStep }) => {
   const diagramRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -19,6 +19,13 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, trigger
       isPlaying = false;
       // console.log("Resumed")
     }
+  };
+
+  const diagramStep = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+      canvas.withQ().queue('q1').start()
+      canvas.withQ().queue('q1').stop()
   };
 
   const initializeDiagram = () => {
@@ -85,6 +92,10 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, trigger
   useEffect(() => {
     diagramPlayer();
   }, [isPlaying]);
+
+  useEffect(() => {
+    diagramStep();
+  }, [currentStep]);
 
   return <div ref={diagramRef} className="diagram-pane"></div>;
 };

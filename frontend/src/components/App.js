@@ -9,6 +9,7 @@ import LogPane from "./LogPane";
 
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   const [speedValue, setSpeedValue] = useState("");
   const [totalSteps, setTotalSteps] = useState("");
   const [diagramStoredCode, setDiagramStoredCode] = useState("");
@@ -31,11 +32,7 @@ export default function App() {
   };
   // Increase the step value
   const handleStepIncrease = () => {
-    console.log("Step increased");
-  };
-  // Decrease the step value
-  const handleStepDecrease = () => {
-    console.log("Step decreased");
+    setCurrentStep(currentStep+1);
   };
   // Update the speed value
   const handleSpeedValueChange = (value) => {
@@ -106,7 +103,6 @@ export default function App() {
         togglePlayPause={togglePlayPause}
         speedValueChange={handleSpeedValueChange}
         externalIncreaseStep={handleStepIncrease}
-        externalDecreaseStep={handleStepDecrease}
         totalSteps={totalSteps}
       />
       <SplitPane
@@ -141,6 +137,7 @@ export default function App() {
                 speedValue={speedValue}
                 totalSteps={handleTotalSteps}
                 triggerBuild={triggerBuild}
+                currentStep={currentStep}
               />
               <LogPane
                 splitPaneDragged={splitPaneDragged}
