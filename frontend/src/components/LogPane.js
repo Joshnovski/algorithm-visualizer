@@ -9,11 +9,11 @@ const LogPane = ({
   isPlaying,
   triggerBuild,
   currentStep,
-  onPlayStepChange,
+  onStepIndexChange,
 }) => {
   const [messages, setMessages] = useState([]);
   const [allLogs, setAllLogs] = useState([]);
-  const currentStepRef = useRef(currentStep);
+  const stepIndexRef = useRef(0);
   const logPaneRef = useRef(null);
   const messageIndexRef = useRef(0);
   const intervalIdRef = useRef(null);
@@ -22,6 +22,9 @@ const LogPane = ({
     if (messageIndexRef.current < allLogs.length) {
       setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
       messageIndexRef.current += 1;
+      console.log("messageIndexRef: ", messageIndexRef.current);
+      stepIndexRef.current += 1;
+      onStepIndexChange(stepIndexRef.current);
     } else {
       clearInterval(intervalIdRef.current);
     }
@@ -32,15 +35,9 @@ const LogPane = ({
     if (isPlaying && allLogs.length > 0) {
       // Output the first message instantly
       outputMessage();
-      const newStep = currentStepRef.current + 1;
-      onPlayStepChange(newStep); // Notify the parent component of the new step
-      currentStepRef.current = newStep; 
       // Continue with the rest of the messages at the interval specified by speedValue
       intervalIdRef.current = setInterval(() => {
         outputMessage();
-        const newStep = currentStepRef.current + 1;
-        onPlayStepChange(newStep); // Notify the parent component of the new step
-        currentStepRef.current = newStep; 
       }, speedValue * 1000);
     }
   };
@@ -71,12 +68,8 @@ const LogPane = ({
 
   // USE EFFECT HOOKS
   useEffect(() => {
-    currentStepRef.current = currentStep;
-  }, [currentStep]);
-
-  useEffect(() => {
     initializeLogger();
-    currentStepRef.current = 0;
+    stepIndexRef.current = 0;
   }, [logCode, triggerBuild]);
 
   useEffect(() => {

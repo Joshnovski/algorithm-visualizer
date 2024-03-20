@@ -10,7 +10,7 @@ import LogPane from "./LogPane";
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-  const [playCurrentStep, setPlayCurrentStep] = useState(0);
+  const [logCurrentStep, setLogCurrentStep] = useState(0);
   const [speedValue, setSpeedValue] = useState("");
   const [totalSteps, setTotalSteps] = useState("");
   const [diagramStoredCode, setDiagramStoredCode] = useState("");
@@ -47,10 +47,10 @@ export default function App() {
   const logsCodeAndChanges = (code) => {
     setLogsStoredCode(code);
   };
-  // Update the current step from log player
-  const onPlayStepChange = (step) => {
-    if (step <= totalSteps) setPlayCurrentStep(step);
-    // setPlayCurrentStep(step);
+  // Update the step index from log player
+  const onStepIndexChange = (index) => {
+    if (index <= totalSteps) setLogCurrentStep(index);
+    // console.log("logCurrentStep: ", logCurrentStep);
   };
   //
   const handleCodeChange = () => {
@@ -58,7 +58,6 @@ export default function App() {
     setLogCode(logsStoredCode);
     setTriggerBuild((prev) => !prev);
     setCurrentStep(0);
-    setPlayCurrentStep(0);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {
@@ -113,7 +112,7 @@ export default function App() {
         externalIncreaseStep={handleStepIncrease}
         totalSteps={totalSteps}
         currentStep={currentStep}
-        playCurrentStep={playCurrentStep}
+        logCurrentStep={logCurrentStep}
         triggerBuild={triggerBuild}
       />
       <SplitPane
@@ -157,7 +156,7 @@ export default function App() {
                 isPlaying={isPlaying}
                 triggerBuild={triggerBuild}
                 currentStep={currentStep}
-                onPlayStepChange={onPlayStepChange}
+                onStepIndexChange={onStepIndexChange}
               />
             </SplitPane>
             <CodePane

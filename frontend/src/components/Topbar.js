@@ -12,7 +12,7 @@ const Topbar = ({
   externalIncreaseStep,
   totalSteps,
   currentStep,
-  playCurrentStep,
+  logCurrentStep,
   triggerBuild,
 }) => {
   // Set max value of progress bar based on number of steps in algorithm
@@ -59,7 +59,7 @@ const Topbar = ({
             <i class="fa-solid fa-play icon"></i>Play
           </div>
           <div class="progress-bar-container">
-            <ProgressBar maxValue={maxValue} externalIncreaseStep={externalIncreaseStep} currentStep={currentStep} playCurrentStep={playCurrentStep} triggerBuild={triggerBuild}/>
+            <ProgressBar maxValue={maxValue} externalIncreaseStep={externalIncreaseStep} currentStep={currentStep} logCurrentStep={logCurrentStep} triggerBuild={triggerBuild}/>
           </div>
           <SpeedSlider speedValueChange={speedValueChange} />
         </div>

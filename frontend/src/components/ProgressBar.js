@@ -5,22 +5,19 @@ const ProgressBar = ({
   maxValue,
   externalIncreaseStep,
   currentStep,
-  playCurrentStep,
+  logCurrentStep,
   triggerBuild,
 }) => {
   const [currentValue, setCurrentValue] = useState(0);
-  console.log("currentStep: ", currentStep);
-  console.log("playCurrentStep: ", playCurrentStep);
+//   console.log("logCurrentStep: ", logCurrentStep);
   useEffect(() => {
     setCurrentValue(0);
   }, [triggerBuild]);
   useEffect(() => {
-    if (playCurrentStep > 0) {
-        setCurrentValue(playCurrentStep + currentStep);
-      } else {
-        setCurrentValue(currentStep);
-      }
-  }, [currentStep, playCurrentStep]);
+    if (logCurrentStep <= maxValue) {
+        setCurrentValue(logCurrentStep);
+    }
+  }, [logCurrentStep]);
 
   const internalIncreaseStep = () => {
     setCurrentValue((prev) => (prev < maxValue ? prev + 1 : maxValue));
