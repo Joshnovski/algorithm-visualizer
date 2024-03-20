@@ -2,13 +2,22 @@ import React, { useEffect, useState, useRef } from "react";
 import seedrandom from "seedrandom";
 import * as jsnx from "jsnetworkx";
 
-const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuild, currentStep }) => {
+const LogPane = ({
+  splitPaneDragged,
+  logCode,
+  speedValue,
+  isPlaying,
+  triggerBuild,
+  currentStep,
+  onPlayStepChange,
+}) => {
   const [messages, setMessages] = useState([]);
   const [allLogs, setAllLogs] = useState([]);
+  const currentStepRef = useRef(currentStep);
   const logPaneRef = useRef(null);
   const messageIndexRef = useRef(0);
   const intervalIdRef = useRef(null);
-
+  // console.log("logCodeCurrentStep: ", currentStep);
   const outputMessage = () => {
     if (messageIndexRef.current < allLogs.length) {
       setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
@@ -17,16 +26,21 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
       clearInterval(intervalIdRef.current);
     }
   };
+
   const logPlayer = () => {
     clearInterval(intervalIdRef.current); // Clear any existing interval
-
     if (isPlaying && allLogs.length > 0) {
       // Output the first message instantly
       outputMessage();
-
+      const newStep = currentStepRef.current + 1;
+      onPlayStepChange(newStep); // Notify the parent component of the new step
+      currentStepRef.current = newStep; 
       // Continue with the rest of the messages at the interval specified by speedValue
       intervalIdRef.current = setInterval(() => {
         outputMessage();
+        const newStep = currentStepRef.current + 1;
+        onPlayStepChange(newStep); // Notify the parent component of the new step
+        currentStepRef.current = newStep; 
       }, speedValue * 1000);
     }
   };
@@ -57,17 +71,25 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
 
   // USE EFFECT HOOKS
   useEffect(() => {
+    currentStepRef.current = currentStep;
+  }, [currentStep]);
+
+  useEffect(() => {
     initializeLogger();
+    currentStepRef.current = 0;
   }, [logCode, triggerBuild]);
 
   useEffect(() => {
     logPlayer();
-    return () => clearInterval(intervalIdRef.current); 
+    return () => clearInterval(intervalIdRef.current);
   }, [isPlaying, speedValue, allLogs]);
 
   useEffect(() => {
-    if (currentStep === 0) {return;}
+    if (currentStep === 0) {
+      return;
+    }
     outputMessage();
+    // console.log("currentStep: ", currentStep);
   }, [currentStep]);
 
   useEffect(() => {

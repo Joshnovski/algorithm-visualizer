@@ -58,6 +58,6 @@ function dfs(n, parent = null, logs = []) {
 };
 
 const logs = dfs(0);
-logs.push("DFS complete!");
+// logs.push("DFS complete!");
 // console.log(logs);
 return logs;

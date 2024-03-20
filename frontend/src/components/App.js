@@ -10,6 +10,7 @@ import LogPane from "./LogPane";
 export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+  const [playCurrentStep, setPlayCurrentStep] = useState(0);
   const [speedValue, setSpeedValue] = useState("");
   const [totalSteps, setTotalSteps] = useState("");
   const [diagramStoredCode, setDiagramStoredCode] = useState("");
@@ -25,15 +26,14 @@ export default function App() {
   const [codePaneWidth, setCodePaneWidth] = useState(
     window.innerWidth < 500 ? "0%" : "50%"
   );
-  console.log(currentStep);
-
   // Handle Total steps
   const handleTotalSteps = (steps) => {
     setTotalSteps(steps);
   };
   // Increase the step value
   const handleStepIncrease = () => {
-    setCurrentStep(currentStep+1);
+    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+    // setCurrentStep(currentStep+1);
   };
   // Update the speed value
   const handleSpeedValueChange = (value) => {
@@ -47,12 +47,18 @@ export default function App() {
   const logsCodeAndChanges = (code) => {
     setLogsStoredCode(code);
   };
+  // Update the current step from log player
+  const onPlayStepChange = (step) => {
+    if (step <= totalSteps) setPlayCurrentStep(step);
+    // setPlayCurrentStep(step);
+  };
   //
   const handleCodeChange = () => {
     setAlgorithmCode(diagramStoredCode);
     setLogCode(logsStoredCode);
     setTriggerBuild((prev) => !prev);
     setCurrentStep(0);
+    setPlayCurrentStep(0);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {
@@ -107,6 +113,8 @@ export default function App() {
         externalIncreaseStep={handleStepIncrease}
         totalSteps={totalSteps}
         currentStep={currentStep}
+        playCurrentStep={playCurrentStep}
+        triggerBuild={triggerBuild}
       />
       <SplitPane
         split="vertical"
@@ -149,6 +157,7 @@ export default function App() {
                 isPlaying={isPlaying}
                 triggerBuild={triggerBuild}
                 currentStep={currentStep}
+                onPlayStepChange={onPlayStepChange}
               />
             </SplitPane>
             <CodePane
