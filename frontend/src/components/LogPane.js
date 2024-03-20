@@ -66,6 +66,7 @@ const LogPane = ({ splitPaneDragged, logCode, speedValue, isPlaying, triggerBuil
   }, [isPlaying, speedValue, allLogs]);
 
   useEffect(() => {
+    if (currentStep === 0) {return;}
     outputMessage();
   }, [currentStep]);
 

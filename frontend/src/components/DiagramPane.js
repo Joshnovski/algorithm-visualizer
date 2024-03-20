@@ -94,6 +94,7 @@ const DiagramPane = ({ algorithmCode, isPlaying, speedValue, totalSteps, trigger
   }, [isPlaying]);
 
   useEffect(() => {
+    if (currentStep === 0) {return;}
     diagramStep();
   }, [currentStep]);
 

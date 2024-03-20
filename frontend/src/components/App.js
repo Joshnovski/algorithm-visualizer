@@ -25,6 +25,7 @@ export default function App() {
   const [codePaneWidth, setCodePaneWidth] = useState(
     window.innerWidth < 500 ? "0%" : "50%"
   );
+  console.log(currentStep);
 
   // Handle Total steps
   const handleTotalSteps = (steps) => {
@@ -51,6 +52,7 @@ export default function App() {
     setAlgorithmCode(diagramStoredCode);
     setLogCode(logsStoredCode);
     setTriggerBuild((prev) => !prev);
+    setCurrentStep(0);
   };
   // Update state when the split pane is dragged
   const handleDragFinished = () => {
