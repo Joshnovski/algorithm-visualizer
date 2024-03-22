@@ -114,6 +114,7 @@ export default function App() {
         currentStep={currentStep}
         logCurrentStep={logCurrentStep}
         triggerBuild={triggerBuild}
+        isPlaying={isPlaying}
       />
       <SplitPane
         split="vertical"

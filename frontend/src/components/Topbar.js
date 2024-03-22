@@ -14,15 +14,15 @@ const Topbar = ({
   currentStep,
   logCurrentStep,
   triggerBuild,
+  isPlaying,
 }) => {
   // Set max value of progress bar based on number of steps in algorithm
   const [newTotalSteps, setNewTotalSteps] = useState(1);
+
   useEffect(() => {
     setNewTotalSteps(totalSteps || 1);
   }, [totalSteps]);
-    const maxValue = newTotalSteps;
-
-    // const maxValue = totalSteps;
+  const maxValue = newTotalSteps;
 
   return (
     <nav class="topbar">
@@ -52,14 +52,27 @@ const Topbar = ({
           <i class="fa-solid fa-bars"></i>
         </div>
         <div class="toolbar">
-          <div class="build-btn right-btn" onClick={buildCode}>
-            <i class="fa-solid fa-wrench icon"></i>Build
+          <div
+            className={`build-btn ${isPlaying ? "disabled-btn" : "right-btn"}`}
+            onClick={!isPlaying ? buildCode : undefined}
+          >
+            <i className="fa-solid fa-wrench icon"></i>Build
           </div>
           <div class="play-btn right-btn" onClick={togglePlayPause}>
-            <i class="fa-solid fa-play icon"></i>Play
+            <i
+              class={`fa-solid ${isPlaying ? "fa-pause" : "fa-play"} icon`}
+            ></i>
+            {isPlaying ? "Pause" : "Play"}
           </div>
           <div class="progress-bar-container">
-            <ProgressBar maxValue={maxValue} externalIncreaseStep={externalIncreaseStep} currentStep={currentStep} logCurrentStep={logCurrentStep} triggerBuild={triggerBuild}/>
+            <ProgressBar
+              maxValue={maxValue}
+              externalIncreaseStep={externalIncreaseStep}
+              currentStep={currentStep}
+              logCurrentStep={logCurrentStep}
+              triggerBuild={triggerBuild}
+              isPlaying={isPlaying}
+            />
           </div>
           <SpeedSlider speedValueChange={speedValueChange} />
         </div>

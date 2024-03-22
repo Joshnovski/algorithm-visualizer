@@ -7,6 +7,7 @@ const ProgressBar = ({
   currentStep,
   logCurrentStep,
   triggerBuild,
+  isPlaying,
 }) => {
   const [currentValue, setCurrentValue] = useState(0);
 //   console.log("logCurrentStep: ", logCurrentStep);
@@ -28,7 +29,7 @@ const ProgressBar = ({
 
   return (
     <div class="progress-bar-container">
-      <div class="step-btn" onClick={internalIncreaseStep}>
+      <div class={`${isPlaying ? "disabled-btn" : "step-btn"}`} onClick={!isPlaying ? internalIncreaseStep : undefined}>
         <i class="fa-solid fa-forward-step icon"></i>
         {"Step"}
       </div>
