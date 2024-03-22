@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactSlider from "react-slider";
 
-const SpeedSlider = ({ speedValueChange }) => {
+const SpeedSlider = ({ speedValueChange, isPlaying }) => {
 
   const initialSpeed = 1.8;
   const [value, setValue] = useState(initialSpeed); // set initial value to 3
@@ -11,7 +11,7 @@ const SpeedSlider = ({ speedValueChange }) => {
   }, [value]);
 
   return (
-    <div class=" right-btn speed-slider-container">
+    <div class={`speed-slider-container ${isPlaying ? "disabled-btn" : "right-btn"}`}>
       <div>Speed</div>
       <ReactSlider
         className="speed-slider"
@@ -23,6 +23,7 @@ const SpeedSlider = ({ speedValueChange }) => {
         invert
         defaultValue={initialSpeed}
         onChange={(newValue) => setValue(newValue)}
+        disabled={isPlaying}
       />
     </div>
   );
