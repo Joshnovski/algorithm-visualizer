@@ -74,7 +74,7 @@ const Topbar = ({
               isPlaying={isPlaying}
             />
           </div>
-          <SpeedSlider speedValueChange={speedValueChange} isPlaying={isPlaying} />
+          <SpeedSlider speedValueChange={speedValueChange} isPlaying={isPlaying} currentStep={currentStep} logCurrentStep={logCurrentStep} triggerBuild={triggerBuild}/>
         </div>
         <div
           id="code-panel-icon"

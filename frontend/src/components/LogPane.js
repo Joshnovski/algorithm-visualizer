@@ -22,7 +22,7 @@ const LogPane = ({
     if (messageIndexRef.current < allLogs.length) {
       setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
       messageIndexRef.current += 1;
-      console.log("messageIndexRef: ", messageIndexRef.current);
+      // console.log("messageIndexRef: ", messageIndexRef.current);
       stepIndexRef.current += 1;
       onStepIndexChange(stepIndexRef.current);
     } else {
