@@ -14,8 +14,9 @@ const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges }) => {
     fetch("/api/algorithms/")
       .then((response) => response.json())
       .then((data) => {
-
-        const fetchedAllCode  = data[0].code;
+        console.log(data);
+        // const fetchedAllCode  = data[0].code;
+        const fetchedAllCode  = data.find((algorithm) => algorithm.name === "GraphDepthFirstSearch").code;
         setAllCode(fetchedAllCode);
 
         const visualizationCodeOnly = fetchedAllCode.split("// TIMING and INITIALIZATION")[0].trim();
