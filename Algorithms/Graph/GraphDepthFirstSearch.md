@@ -1,49 +1,29 @@
-# Breadth-First Search
+# Depth-First Search
 
-Breadth-first search (BFS) is an algorithm for traversing
-or searching tree or graph data structures. It starts at
-the tree root (or some arbitrary node of a graph, sometimes
-referred to as a 'search key') and explores the neighbor
-nodes first, before moving to the next level neighbors.
+Depth-first search (DFS) is an algorithm for traversing or
+searching tree or graph data structures. One starts at
+the root (selecting some arbitrary node as the root in
+the case of a graph) and explores as far as possible
+along each branch before backtracking.
 
-![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/5/5d/Breadth-First-Search-Algorithm.gif)
-
-## Pseudocode
-
-```text
-BFS(root)
-  Pre: root is the node of the BST
-  Post: the nodes in the BST have been visited in breadth first order
-  q ← queue
-  while root = ø
-    yield root.value
-    if root.left = ø
-      q.enqueue(root.left)
-    end if
-    if root.right = ø
-      q.enqueue(root.right)
-    end if
-    if !q.isEmpty()
-      root ← q.dequeue()
-    else
-      root ← ø
-    end if
-  end while
-end BFS
-```
+![Algorithm Visualization](https://upload.wikimedia.org/wikipedia/commons/7/7f/Depth-First-Search.gif)
 
 ## Applications
-* Copying garbage collection, Cheney's algorithm
-* Finding the shortest path between two nodes u and v, with path length measured by number of edges (an advantage over depth-first search)
-* (Reverse) Cuthill–McKee mesh numbering
-* Ford–Fulkerson method for computing the maximum flow in a flow network
-* Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.
-* Construction of the failure function of the Aho-Corasick pattern matcher.
-* Testing bipartiteness of a graph.
+* Finding connected components.
+* Topological sorting.
+* Finding 2-(edge or vertex)-connected components.
+* Finding 3-(edge or vertex)-connected components.
+* Finding the bridges of a graph.
+* Generating words in order to plot the Limit Set of a Group.
+* Finding strongly connected components.
+* Planarity testing
+* Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)
+* Maze generation may use a randomized depth-first search.
+* Finding biconnectivity in graphs.
 
 ## References
 
-- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/breadth-first-search)
-- [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
+- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/depth-first-search)
+- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
 - [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
 - [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)

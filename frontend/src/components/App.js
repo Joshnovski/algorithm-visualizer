@@ -20,6 +20,7 @@ export default function App() {
   const [logCode, setLogCode] = useState("");
   const [splitPaneDragged, setSplitPaneDragged] = useState(false);
   const [currentPath, setCurrentPath] = useState([]);
+  const [formattedName, setFormattedName] = useState("");
   const [listPaneWidth, setListPaneWidth] = useState(
     window.innerWidth < 630 ? "0%" : "20%"
   );
@@ -65,6 +66,7 @@ export default function App() {
   };
   // Update the current path when a dropdown item is clicked
   const handleDropdownClick = (path) => {
+    setFormattedName(path.map(segment => segment.replace(/[\s-]+/g, '')).join(''));
     setCurrentPath(path);
   };
 
@@ -163,6 +165,7 @@ export default function App() {
             <CodePane
               diagramCodeAndChanges={diagramCodeAndChanges}
               logsCodeAndChanges={logsCodeAndChanges}
+              formattedName={formattedName}
             />
           </SplitPane>
         </div>

@@ -5,9 +5,10 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/snippets/javascript";
 
-const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges }) => {
+const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges, formattedName }) => {
   const [code, setCode] = useState(``);
   const [allCode, setAllCode] = useState("");
+  console.log("formattedName: ", formattedName);
 
   // Fetch function to the algorithm model
   useEffect(() => {
@@ -16,7 +17,7 @@ const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges }) => {
       .then((data) => {
         console.log(data);
         // const fetchedAllCode  = data[0].code;
-        const fetchedAllCode  = data.find((algorithm) => algorithm.name === "GraphDepthFirstSearch").code;
+        const fetchedAllCode  = data.find((algorithm) => algorithm.name === formattedName).code;
         setAllCode(fetchedAllCode);
 
         const visualizationCodeOnly = fetchedAllCode.split("// TIMING and INITIALIZATION")[0].trim();
@@ -31,7 +32,7 @@ const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges }) => {
       .catch((error) => {
         console.error("Error fetching data: ", error);
       });
-  }, []);
+  }, [formattedName]);
   
   function onChange(newValue) {
     setCode(newValue);

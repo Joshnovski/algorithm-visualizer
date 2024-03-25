@@ -31,8 +31,9 @@ function dfs(n) {
   }
 }
 
-dfs(0);
+startingNode = 0;
 // TIMING and INITIALIZATION
+dfs(startingNode);
 return stepCounter;
 
 
@@ -57,7 +58,7 @@ function dfs(n, parent = null, logs = []) {
   return logs;
 };
 
-const logs = dfs(0);
+const logs = dfs(startingNode);
 // logs.push("DFS complete!");
 // console.log(logs);
 return logs;

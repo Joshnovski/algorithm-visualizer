@@ -48,52 +48,52 @@ const ListPane = ({ onItemSelect }) => {
 
     return (
         <div className="list-pane">
-            <DropdownItem title="Fundamentals" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Fundamentals" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Introduction" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Basic Concepts" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <DropdownItem title="Array" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Array" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <DropdownItem title="Linked List" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Linked List" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Traverse" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Reverse" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <DropdownItem title="Tree" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Tree" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Search" onItemSelect={onItemSelect}/>
                 <DropdownItem title="In-order Traversal" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Pre-order Traversal" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Post-order Traversal" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
             <DropdownItem title="Graph" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Depth-First Search" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Breadth-First Search" onItemSelect={onItemSelect}/>
             </DropdownItem>
 
-            <DropdownItem title="Hash Table" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Hash Table" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Hash" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Collision Resolution" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <DropdownItem title="Heap" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Heap" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
                 <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
-            </DropdownItem>
+            </DropdownItem> */}
 
-            <DropdownItem title="Stack and Queue" onItemSelect={onItemSelect} path={[]}>
+            {/* <DropdownItem title="Stack and Queue" onItemSelect={onItemSelect} path={[]}>
                 <DropdownItem title="Stack Operations" onItemSelect={onItemSelect}>
                     <DropdownItem title="Push" onItemSelect={onItemSelect}/>
                     <DropdownItem title="Pop" onItemSelect={onItemSelect}/>
@@ -104,7 +104,7 @@ const ListPane = ({ onItemSelect }) => {
                     <DropdownItem title="Dequeue" onItemSelect={onItemSelect}/>
                     <DropdownItem title="Front" onItemSelect={onItemSelect}/>
                 </DropdownItem>
-            </DropdownItem>
+            </DropdownItem> */}
         </div>
     );
 };
