@@ -1,0 +1,91 @@
+[
+  {
+    "title": "Array",
+    "children": [
+      {
+        "title": "Sort",
+        "children": [
+          { "title": "Bubble Sort" },
+          { "title": "Selection Sort" },
+          { "title": "Insertion Sort" },
+          { "title": "Merge Sort" },
+          { "title": "Quick Sort" }
+        ]
+      },
+      {
+        "title": "Search",
+        "children": [
+          { "title": "Linear Search" },
+          { "title": "Binary Search" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Linked List",
+    "children": [
+      { "title": "Insert" },
+      { "title": "Delete" },
+      { "title": "Traverse" },
+      { "title": "Reverse" }
+    ]
+  },
+  {
+    "title": "Stack and Queue",
+    "children": [
+      {
+        "title": "Stack Operations",
+        "children": [
+          { "title": "Push" },
+          { "title": "Pop" },
+          { "title": "Top" }
+        ]
+      },
+      {
+        "title": "Queue Operations",
+        "children": [
+          { "title": "Enqueue" },
+          { "title": "Dequeue" },
+          { "title": "Front" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Tree",
+    "children": [
+      { "title": "Insert" },
+      { "title": "Delete" },
+      { "title": "Search" },
+      { "title": "In-order Traversal" },
+      { "title": "Pre-order Traversal" },
+      { "title": "Post-order Traversal" }
+    ]
+  },
+  {
+    "title": "Heap",
+    "children": [
+      { "title": "Insert" },
+      { "title": "Delete" },
+      { "title": "Sort" }
+    ]
+  },
+  {
+    "title": "Hash Table",
+    "children": [
+      { "title": "Hash" },
+      { "title": "Collision Resolution" },
+      { "title": "Insert" },
+      { "title": "Delete" },
+      { "title": "Search" }
+    ]
+  },
+  {
+    "title": "Graph",
+    "children": [
+      { "title": "Depth-First Search" },
+      { "title": "Breadth-First Search" },
+      { "title": "Dijkstra Shortest Path" }
+    ]
+  }
+]
