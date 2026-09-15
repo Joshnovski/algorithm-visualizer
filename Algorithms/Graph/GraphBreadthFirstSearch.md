@@ -40,10 +40,3 @@ end BFS
 * Serialization/Deserialization of a binary tree vs serialization in sorted order, allows the tree to be re-constructed in an efficient manner.
 * Construction of the failure function of the Aho-Corasick pattern matcher.
 * Testing bipartiteness of a graph.
-
-## References
-
-- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/breadth-first-search)
-- [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
-- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
-- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)

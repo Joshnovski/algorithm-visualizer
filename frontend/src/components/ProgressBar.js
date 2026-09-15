@@ -1,46 +1,21 @@
-// ProgressBar.js
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const ProgressBar = ({
-  maxValue,
-  externalIncreaseStep,
-  currentStep,
-  logCurrentStep,
-  triggerBuild,
-  isPlaying,
-}) => {
-  const [currentValue, setCurrentValue] = useState(0);
-//   console.log("logCurrentStep: ", logCurrentStep);
-  useEffect(() => {
-    setCurrentValue(0);
-  }, [triggerBuild]);
-  useEffect(() => {
-    if (logCurrentStep <= maxValue) {
-        setCurrentValue(logCurrentStep);
-    }
-  }, [logCurrentStep]);
-
-  const internalIncreaseStep = () => {
-    setCurrentValue((prev) => (prev < maxValue ? prev + 1 : maxValue));
-    if (externalIncreaseStep) externalIncreaseStep();
-  };
-
-  const progressPercentage = (currentValue / maxValue) * 100;
+const ProgressBar = ({ currentStep, totalSteps, onStep, isPlaying }) => {
+  const maxValue = totalSteps || 1;
+  const canStep = !isPlaying && totalSteps > 0 && currentStep < totalSteps;
+  const progressPercentage = totalSteps > 0 ? (currentStep / maxValue) * 100 : 0;
 
   return (
-    <div class="progress-bar-container">
-      <div class={`${isPlaying ? "disabled-btn" : "step-btn"}`} onClick={!isPlaying ? internalIncreaseStep : undefined}>
-        <i class="fa-solid fa-forward-step icon"></i>
-        {"Step"}
+    <div className="progress-bar-container">
+      <div className={canStep ? "step-btn" : "disabled-btn"} onClick={canStep ? onStep : undefined}>
+        <i className="fa-solid fa-forward-step icon"></i>
+        Step
       </div>
-      <div class="progress-bar">
-        <div
-          class="progress-bar-active"
-          style={{ width: `${progressPercentage}%` }}
-        ></div>
-        <div class="progress-bar-value">
-          <span class="progress-bar-current-value">{`${currentValue}`}</span>
-          {`/${maxValue}`}
+      <div className="progress-bar">
+        <div className="progress-bar-active" style={{ width: `${progressPercentage}%` }}></div>
+        <div className="progress-bar-value">
+          <span className="progress-bar-current-value">{currentStep}</span>
+          {`/${totalSteps}`}
         </div>
       </div>
     </div>

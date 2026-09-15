@@ -1,117 +1,67 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
+import catalogue from "../algorithms.json";
 
-const DropdownItem = ({ title, children, onItemSelect, level = 0, path = [] }) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const hasChildren = Boolean(children);
-    const paddingLeftIncrement = 10 + level * 20;
-    const containerStyle = {
-        paddingLeft: `${paddingLeftIncrement}px`, 
-        ...(isOpen ? { backgroundColor: '#393939' } : {})
-    };
-    const fullPath = [...path, title];
+const pathsEqual = (a, b) => a.length === b.length && a.every((segment, i) => segment === b[i]);
 
-    return (
-        <div className="dropdown-container">
-            <div 
-                className="dropdown-title-container" 
-                style={containerStyle} 
-                onClick={() => {
-                    setIsOpen(!isOpen);
-                    if (!hasChildren) {
-                        onItemSelect(fullPath);
-                    }
-                }}>
+const DropdownItem = ({ item, onItemSelect, level = 0, path = [], currentPath }) => {
+  const fullPath = [...path, item.title];
+  const hasChildren = Boolean(item.children);
+  const isSelected = !hasChildren && pathsEqual(fullPath, currentPath);
+  // Open categories that contain the selected algorithm by default
+  const containsSelection = hasChildren && fullPath.every((segment, i) => currentPath[i] === segment);
+  const [isOpen, setIsOpen] = useState(containsSelection);
 
-                <div className="dropdown-title">{title}</div>
-                {hasChildren && (
-                    <i className={`fa-solid ${isOpen ? 'fa-caret-down' : 'fa-caret-right'} fa-xs`}></i>
-                )}
+  const containerStyle = {
+    paddingLeft: `${10 + level * 20}px`,
+    ...(isOpen && hasChildren ? { backgroundColor: "#393939" } : {}),
+  };
 
-            </div>
-            {isOpen && hasChildren && (
-                <div className="dropdown-content">
-                    <div className="dropdown-inner-content">
-                        {React.Children.map(children, child =>
-                            React.cloneElement(child, { 
-                                level: level + 1,
-                                onItemSelect: onItemSelect,
-                                path: fullPath})
-                        )}
-                    </div>
-                </div>
-            )}
+  return (
+    <div className="dropdown-container">
+      <div
+        className={`dropdown-title-container ${isSelected ? "dropdown-selected" : ""}`}
+        style={containerStyle}
+        onClick={() => {
+          if (hasChildren) setIsOpen(!isOpen);
+          else onItemSelect(fullPath);
+        }}
+      >
+        <div className="dropdown-title">{item.title}</div>
+        {hasChildren && (
+          <i className={`fa-solid ${isOpen ? "fa-caret-down" : "fa-caret-right"} fa-xs`}></i>
+        )}
+      </div>
+      {isOpen && hasChildren && (
+        <div className="dropdown-content">
+          <div className="dropdown-inner-content">
+            {item.children.map((child) => (
+              <DropdownItem
+                key={child.title}
+                item={child}
+                level={level + 1}
+                path={fullPath}
+                onItemSelect={onItemSelect}
+                currentPath={currentPath}
+              />
+            ))}
+          </div>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
-const ListPane = ({ onItemSelect }) => {
-
-    return (
-        <div className="list-pane">
-            {/* <DropdownItem title="Fundamentals" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Introduction" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Basic Concepts" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            {/* <DropdownItem title="Array" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            {/* <DropdownItem title="Linked List" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Traverse" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Reverse" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            {/* <DropdownItem title="Tree" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-                <DropdownItem title="In-order Traversal" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Pre-order Traversal" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Post-order Traversal" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            <DropdownItem title="Graph" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Depth-First Search" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Breadth-First Search" onItemSelect={onItemSelect}/>
-            </DropdownItem>
-
-            {/* <DropdownItem title="Hash Table" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Hash" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Collision Resolution" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Search" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            {/* <DropdownItem title="Heap" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Insert" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Delete" onItemSelect={onItemSelect}/>
-                <DropdownItem title="Sort" onItemSelect={onItemSelect}/>
-            </DropdownItem> */}
-
-            {/* <DropdownItem title="Stack and Queue" onItemSelect={onItemSelect} path={[]}>
-                <DropdownItem title="Stack Operations" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Push" onItemSelect={onItemSelect}/>
-                    <DropdownItem title="Pop" onItemSelect={onItemSelect}/>
-                    <DropdownItem title="Top" onItemSelect={onItemSelect}/>
-                </DropdownItem>
-                <DropdownItem title="Queue Operations" onItemSelect={onItemSelect}>
-                    <DropdownItem title="Enqueue" onItemSelect={onItemSelect}/>
-                    <DropdownItem title="Dequeue" onItemSelect={onItemSelect}/>
-                    <DropdownItem title="Front" onItemSelect={onItemSelect}/>
-                </DropdownItem>
-            </DropdownItem> */}
-        </div>
-    );
-};
+const ListPane = ({ onItemSelect, currentPath }) => (
+  <div className="list-pane">
+    {catalogue.map((item) => (
+      <DropdownItem
+        key={item.title}
+        item={item}
+        onItemSelect={onItemSelect}
+        currentPath={currentPath}
+      />
+    ))}
+  </div>
+);
 
 export default ListPane;
-
-
-
-
-

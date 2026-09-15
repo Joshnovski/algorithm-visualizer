@@ -1,105 +1,46 @@
-import React, { useEffect, useState, useRef } from "react";
-import seedrandom from "seedrandom";
-import * as jsnx from "jsnetworkx";
+import React, { useEffect, useRef } from "react";
 
-const LogPane = ({
-  splitPaneDragged,
-  logCode,
-  speedValue,
-  isPlaying,
-  triggerBuild,
-  currentStep,
-  onStepIndexChange,
-}) => {
-  const [messages, setMessages] = useState([]);
-  const [allLogs, setAllLogs] = useState([]);
-  const stepIndexRef = useRef(0);
+const LogPane = ({ logs, currentStep, error, splitPaneDragged, hasAlgorithm }) => {
   const logPaneRef = useRef(null);
-  const messageIndexRef = useRef(0);
-  const intervalIdRef = useRef(null);
-  // console.log("logCodeCurrentStep: ", currentStep);
-  const outputMessage = () => {
-    if (messageIndexRef.current < allLogs.length) {
-      setMessages((msgs) => [...msgs, allLogs[messageIndexRef.current]]);
-      messageIndexRef.current += 1;
-      // console.log("messageIndexRef: ", messageIndexRef.current);
-      stepIndexRef.current += 1;
-      onStepIndexChange(stepIndexRef.current);
-    } else {
-      clearInterval(intervalIdRef.current);
-    }
-  };
+  const visibleLogs = logs.slice(0, currentStep);
 
-  const logPlayer = () => {
-    clearInterval(intervalIdRef.current); // Clear any existing interval
-    if (isPlaying && allLogs.length > 0) {
-      // Output the first message instantly
-      outputMessage();
-      // Continue with the rest of the messages at the interval specified by speedValue
-      intervalIdRef.current = setInterval(() => {
-        outputMessage();
-      }, speedValue * 1000);
-    }
-  };
-
-  // FUNCTION TO EXECUTE THE ALGORITHM CODE
-  const initializeLogger = () => {
-    try {
-      const args = ["console", "seedrandom", "jsnx"];
-      const executeCode = new Function(...args, logCode);
-      const returnLogs = executeCode(console, seedrandom, jsnx);
-      setAllLogs(returnLogs);
-
-      setMessages([]); // Clear the log
-      messageIndexRef.current = 0; // Reset the message index
-    } catch (e) {
-      console.error("Error executing algorithm code:", e);
-    }
-  };
-
-  // Adjust the max-height of the log pane on window resize
+  // The pane sits inside a resizable split, so cap its height to the space actually available
   const updateMaxHeight = () => {
     if (logPaneRef.current) {
       const rect = logPaneRef.current.getBoundingClientRect();
-      const maxHeight = window.innerHeight - rect.top;
-      logPaneRef.current.style.maxHeight = `${maxHeight}px`;
+      logPaneRef.current.style.maxHeight = `${window.innerHeight - rect.top}px`;
     }
   };
-
-  // USE EFFECT HOOKS
-  useEffect(() => {
-    initializeLogger();
-    stepIndexRef.current = 0;
-  }, [logCode, triggerBuild]);
-
-  useEffect(() => {
-    logPlayer();
-    return () => clearInterval(intervalIdRef.current);
-  }, [isPlaying, speedValue, allLogs]);
-
-  useEffect(() => {
-    if (currentStep === 0) {
-      return;
-    }
-    outputMessage();
-    // console.log("currentStep: ", currentStep);
-  }, [currentStep]);
 
   useEffect(() => {
     updateMaxHeight();
     window.addEventListener("resize", updateMaxHeight);
-    return () => window.removeEventListener("resize", updateMaxHeight); // Cleanup when the component is unmounted
+    return () => window.removeEventListener("resize", updateMaxHeight);
   }, []);
 
   useEffect(() => {
     updateMaxHeight();
   }, [splitPaneDragged]);
 
+  // Keep the newest line in view
+  useEffect(() => {
+    if (logPaneRef.current) logPaneRef.current.scrollTop = logPaneRef.current.scrollHeight;
+  }, [currentStep]);
+
   return (
     <div ref={logPaneRef} className="log-pane">
-      {messages.map((message, index) => (
+      {error && <div className="log-output log-error">{error}</div>}
+      {!error && !hasAlgorithm && (
+        <div className="log-output log-hint">Choose an algorithm from the list to begin.</div>
+      )}
+      {!error && hasAlgorithm && logs.length > 0 && currentStep === 0 && (
+        <div className="log-output log-hint">
+          Press Play or Step to start. {logs.length} steps in total.
+        </div>
+      )}
+      {visibleLogs.map((message, index) => (
         <div className="log-output" key={index}>
-          {message}
+          <span className="log-step-number">{index + 1}.</span> {message}
         </div>
       ))}
     </div>

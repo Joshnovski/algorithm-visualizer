@@ -1,3 +1,10 @@
+# Node (the built bundle frontend/static/frontend/main.js stays tracked on purpose)
+node_modules/
+
+# Editor
+.vscode/
+.claude/settings.local.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -20,10 +20,3 @@ along each branch before backtracking.
 * Solving puzzles with only one solution, such as mazes. (DFS can be adapted to find all solutions to a maze by only including nodes on the current path in the visited set.)
 * Maze generation may use a randomized depth-first search.
 * Finding biconnectivity in graphs.
-
-## References
-
-- [trekhleb/javascript-algorithms](https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/tree/depth-first-search)
-- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
-- [Tree Traversals (Inorder, Preorder and Postorder)](https://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
-- [BFS vs DFS](https://www.geeksforgeeks.org/bfs-vs-dfs-binary-tree/)

@@ -1,63 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import AceEditor from "react-ace";
+import { marked } from "marked";
 import "ace-builds/src-noconflict/theme-tomorrow_night_eighties";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/snippets/javascript";
 
-const CodePane = ({ logsCodeAndChanges, diagramCodeAndChanges, formattedName }) => {
-  const [code, setCode] = useState(``);
-  const [allCode, setAllCode] = useState("");
-  console.log("formattedName: ", formattedName);
+// Right-hand pane with two tabs: the editable algorithm code, and its markdown description.
+// Edits are kept in App and only take effect on Build.
+const CodePane = ({ code, onChange, description }) => {
+  const [tab, setTab] = useState("code");
 
-  // Fetch function to the algorithm model
-  useEffect(() => {
-    fetch("/api/algorithms/")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        // const fetchedAllCode  = data[0].code;
-        const fetchedAllCode  = data.find((algorithm) => algorithm.name === formattedName).code;
-        setAllCode(fetchedAllCode);
+  const descriptionHtml = useMemo(() => {
+    if (!description) return "";
+    return marked.parse(description, { gfm: true, breaks: false });
+  }, [description]);
 
-        const visualizationCodeOnly = fetchedAllCode.split("// TIMING and INITIALIZATION")[0].trim();
-        const dataStructureCodeOnly = fetchedAllCode.split('// GENERATE DATA STRUCTURE')[1].split('// RENDER DIAGRAM')[0].trim();
-        const diagramCodeOnly = visualizationCodeOnly + fetchedAllCode.split('// TIMING and INITIALIZATION')[1].split('// RENDER LOGS')[0];
-        const logsCodeOnly = dataStructureCodeOnly + fetchedAllCode.split('// RENDER LOGS')[1];
-
-        setCode(visualizationCodeOnly);
-        logsCodeAndChanges(logsCodeOnly);
-        diagramCodeAndChanges(diagramCodeOnly);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
-  }, [formattedName]);
-  
-  function onChange(newValue) {
-    setCode(newValue);
-    const dataStructureCodeOnly = newValue.split('// GENERATE DATA STRUCTURE')[1].split('// RENDER DIAGRAM')[0].trim();
-    const diagramCodeOnly = newValue + allCode.split('// TIMING and INITIALIZATION')[1].split('// RENDER LOGS')[0];
-    const logsCodeOnly = dataStructureCodeOnly + allCode.split('// RENDER LOGS')[1];
-    logsCodeAndChanges(logsCodeOnly);
-    diagramCodeAndChanges(diagramCodeOnly);
-  }
+  const tabClass = (name) => `pane-tab ${tab === name ? "pane-tab-active" : ""}`;
 
   return (
-    <div class="code-pane">
-      <AceEditor
-        mode="javascript"
-        theme="tomorrow_night_eighties"
-        value={code}
-        onChange={onChange}
-        setOptions={{
-          enableSnippets: false,
-          showLineNumbers: true,
-          useWorker: false,
-          tabSize: 2,
-        }}
-        style={{ width: "100%", height: "100%" }}
-      />
+    <div className="code-pane">
+      <div className="pane-tabs">
+        <div className={tabClass("code")} onClick={() => setTab("code")}>
+          <i className="fa-solid fa-code icon"></i>Code
+        </div>
+        <div className={tabClass("description")} onClick={() => setTab("description")}>
+          <i className="fa-solid fa-book-open icon"></i>Description
+        </div>
+      </div>
+      <div className="pane-body">
+        {tab === "code" ? (
+          <AceEditor
+            mode="javascript"
+            theme="tomorrow_night_eighties"
+            value={code}
+            onChange={onChange}
+            name="algorithm-code-editor"
+            setOptions={{
+              enableSnippets: false,
+              showLineNumbers: true,
+              useWorker: false,
+              tabSize: 2,
+            }}
+            style={{ width: "100%", height: "100%" }}
+          />
+        ) : descriptionHtml ? (
+          <div className="description-pane" dangerouslySetInnerHTML={{ __html: descriptionHtml }} />
+        ) : (
+          <div className="description-pane description-empty">
+            Choose an algorithm from the list to read about it.
+          </div>
+        )}
+      </div>
     </div>
   );
 };

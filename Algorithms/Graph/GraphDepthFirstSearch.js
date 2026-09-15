@@ -1,64 +1,42 @@
+// Depth-First Search
+// Each call to step("message") ends one animation frame and writes the message to the log.
+
 // GENERATE DATA STRUCTURE
 
-seedrandom("2", { global: true }); // Set fixed seed (Later allow user to set seed)
-const G = jsnx.fastGnpRandomGraph(5, 0.6); // Generate G(n, p) graph, n = nodes, p = probability of adding edge
-for (let n of G) {
+seedrandom("2", { global: true }); // Fixed seed so the same graph is generated every build
+const G = jsnx.fastGnpRandomGraph(7, 0.4); // G(n, p) random graph: n nodes, p = edge probability
+for (const n of G) {
   G.node[n] = { seen: false }; // Mark each node initially as not visited
 }
+const startingNode = 0;
 
 // RENDER DIAGRAM
 
-canvas.nodes(G.nodes()).add();
+const VISITING = "#ba0d5b", DONE = "#17ec7a", TRAVERSE = "#3b8beb", BACKTRACK = "#f0b429";
+canvas.size([420, 320]);
+canvas.edgelength(90);
+canvas.nodes(G.nodes()).add({ labels: { 0: { color: "#ffffff" } } });
 canvas.edges(G.edges()).add();
 
-// Recursive DFS function
-function dfs(n) {
-  const q = canvas.withQ('q1')
-  G.node[n].seen = true;
-  q.node(n).highlight().size("1.5x"); // Node identify as visited
-  q.node(n).color("#ba0d5b"); // Node color
-  stepCounter++;
-  q.pause(speedValue);
+const q = canvas.withQ("q1"); // Everything queued on q is animated step by step
 
-  for (let n2 of G.neighbors(n)) {
+// Recursive DFS: go as deep as possible before backtracking
+function dfs(n, parent = null) {
+  G.node[n].seen = true;
+  q.node(n).color(VISITING).highlight().size("1.5x");
+  step(parent === null ? `Start at node ${n}` : `Visit node ${n} (from ${parent})`);
+
+  for (const n2 of G.neighbors(n)) {
     if (G.node[n2].seen) continue;
-    q.edge([n, n2]).traverse("blue");
-    dfs(n2); // DFS on neighbor
-    q.edge([n2, n]).traverse("#ba0d5b");
+    q.edge([n, n2]).traverse(TRAVERSE, n);
+    dfs(n2, n);
+    q.edge([n2, n]).traverse(BACKTRACK, n2);
     q.node(n).highlight().size("1.5x");
-    stepCounter++;
-    q.pause(speedValue);
+    step(`Backtrack from ${n2} to ${n}`);
   }
+
+  q.node(n).color(DONE);
+  step(`Node ${n} finished: all neighbours explored`);
 }
 
-startingNode = 0;
-// TIMING and INITIALIZATION
 dfs(startingNode);
-return stepCounter;
-
-
-
-// RENDER LOGS
-
-function dfs(n, parent = null, logs = []) {
-  G.node[n].seen = true;
-  if (parent === null) {
-    logs.push(`Start at node ${n}`);
-  } else {
-    logs.push(`Traverse edge [${parent}, ${n}]`);
-  }
-  for (let n2 of G.neighbors(n)) {
-    if (!G.node[n2].seen) {
-      dfs(n2, n, logs);
-    }
-  }
-  if (parent !== null) {
-    logs.push(`Backtracking edge [${n}, ${parent}]`);
-  }
-  return logs;
-};
-
-const logs = dfs(startingNode);
-// logs.push("DFS complete!");
-// console.log(logs);
-return logs;

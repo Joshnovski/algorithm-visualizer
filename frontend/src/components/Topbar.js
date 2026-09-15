@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProgressBar from "./ProgressBar";
 import SpeedSlider from "./SpeedSlider";
 
@@ -6,82 +6,74 @@ const Topbar = ({
   currentPath,
   toggleListPane,
   toggleCodePane,
-  buildCode,
-  togglePlayPause,
-  speedValueChange,
-  externalIncreaseStep,
+  onBuild,
+  onPlayPause,
+  onStep,
+  onSpeedChange,
+  speed,
   totalSteps,
   currentStep,
-  logCurrentStep,
-  triggerBuild,
   isPlaying,
 }) => {
-  // Set max value of progress bar based on number of steps in algorithm
-  const [newTotalSteps, setNewTotalSteps] = useState(1);
+  const hasAlgorithm = currentPath.length > 0;
+  const canBuild = hasAlgorithm && !isPlaying;
+  const canPlay = totalSteps > 0;
+  const atEnd = totalSteps > 0 && currentStep >= totalSteps;
 
-  useEffect(() => {
-    setNewTotalSteps(totalSteps || 1);
-  }, [totalSteps]);
-  const maxValue = newTotalSteps;
+  let playLabel = "Play";
+  let playIcon = "fa-play";
+  if (isPlaying) {
+    playLabel = "Pause";
+    playIcon = "fa-pause";
+  } else if (atEnd) {
+    playLabel = "Replay";
+    playIcon = "fa-rotate-left";
+  }
 
   return (
-    <nav class="topbar">
-      <div class="topbar-left-container">
-        <div class="app-title">SIMPLIFY</div>
-        <div
-          className={`dropdown-path-list ${
-            currentPath.length > 0 ? "show-border" : ""
-          }`}
-        >
-          <div class="dropdown-path-list-inner">
+    <nav className="topbar">
+      <div className="topbar-left-container">
+        <div className="app-title">SIMPLIFY</div>
+        <div className={`dropdown-path-list ${hasAlgorithm ? "show-border" : ""}`}>
+          <div className="dropdown-path-list-inner">
             {currentPath.map((item, index) => (
               <React.Fragment key={index}>
                 {index > 0 && <span className="title-separator">//</span>}
-                <span class="drowndown-path-list-item">{item}</span>
+                <span className="drowndown-path-list-item">{item}</span>
               </React.Fragment>
             ))}
           </div>
         </div>
       </div>
-      <div class="topbar-right-container">
-        <div
-          id="list-panel-icon"
-          class="list-panel-icon right-btn"
-          onClick={toggleListPane}
-        >
-          <i class="fa-solid fa-bars"></i>
+      <div className="topbar-right-container">
+        <div id="list-panel-icon" className="list-panel-icon right-btn" onClick={toggleListPane}>
+          <i className="fa-solid fa-bars"></i>
         </div>
-        <div class="toolbar">
+        <div className="toolbar">
           <div
-            className={`build-btn ${isPlaying ? "disabled-btn" : "right-btn"}`}
-            onClick={!isPlaying ? buildCode : undefined}
+            className={`build-btn ${canBuild ? "right-btn" : "disabled-btn"}`}
+            onClick={canBuild ? onBuild : undefined}
+            title="Rebuild the diagram from the code in the editor"
           >
             <i className="fa-solid fa-wrench icon"></i>Build
           </div>
-          <div class="play-btn right-btn" onClick={togglePlayPause}>
-            <i
-              class={`fa-solid ${isPlaying ? "fa-pause" : "fa-play"} icon`}
-            ></i>
-            {isPlaying ? "Pause" : "Play"}
+          <div
+            className={`play-btn ${canPlay ? "right-btn" : "disabled-btn"}`}
+            onClick={canPlay ? onPlayPause : undefined}
+          >
+            <i className={`fa-solid ${playIcon} icon`}></i>
+            {playLabel}
           </div>
-          <div class="progress-bar-container">
-            <ProgressBar
-              maxValue={maxValue}
-              externalIncreaseStep={externalIncreaseStep}
-              currentStep={currentStep}
-              logCurrentStep={logCurrentStep}
-              triggerBuild={triggerBuild}
-              isPlaying={isPlaying}
-            />
-          </div>
-          <SpeedSlider speedValueChange={speedValueChange} isPlaying={isPlaying} currentStep={currentStep} logCurrentStep={logCurrentStep} triggerBuild={triggerBuild}/>
+          <ProgressBar
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            onStep={onStep}
+            isPlaying={isPlaying}
+          />
+          <SpeedSlider speed={speed} onSpeedChange={onSpeedChange} />
         </div>
-        <div
-          id="code-panel-icon"
-          class="code-panel-icon right-btn"
-          onClick={toggleCodePane}
-        >
-          <i class="fa-solid fa-code"></i>
+        <div id="code-panel-icon" className="code-panel-icon right-btn" onClick={toggleCodePane}>
+          <i className="fa-solid fa-code"></i>
         </div>
       </div>
     </nav>
